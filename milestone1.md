@@ -1,14 +1,13 @@
 # 4square
 COGS 121 Project
 
-### Richard Pena
-### Sadeem Khan
-### Christian Lay
-### Brandon Lien
----
+* Richard Peña
+* Sadeem Khan
+* Christian Lay
+* Brandon Lien
 
 
-#### Project Proposal
+## Project Proposal
 
 
 ### Farm2Fresh
@@ -17,6 +16,6 @@ Our target demographic is going to be Farmers who are just getting started and m
 None of our team members are part of the users population because we have no idea what it takes to manage a farm, choose the right crop, or what tools are neccessary for the varying sizes of farms. 
 We plan to use TrefleAPI to get plant data, Fruit and Vegetable Prices dataset that can be found on data.gov to train our recommender systems, and a Storm Prediction Report for climate related solutions
 
-### Actor Prototype
+#### Actor Prototype
 ---
 ![actor_protype.jpeg](actor_prototype.jpeg)
