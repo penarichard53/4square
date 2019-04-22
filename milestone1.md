@@ -18,7 +18,7 @@ We plan to use TrefleAPI to get plant data, Fruit and Vegetable Prices dataset t
 
 #### Farm Prototype
 ---
-![farm_prototype.jpeg](farm_prototype.jpg)
+![farm_prototype.jpeg](farm_prototype.png)
 
 #### Farm Storyboard
 ---
