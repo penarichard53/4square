@@ -17,4 +17,4 @@ We plan to use TrefleAPI to get plant data, Fruit and Vegetable Prices dataset t
 
 ### Actor Prototype
 ---
-[actor_protype.jpeg](actor_prototype.jpeg)
+![actor_protype.jpeg](actor_prototype.jpeg)
