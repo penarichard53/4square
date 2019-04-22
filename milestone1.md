@@ -1,15 +1,17 @@
 # 4square
 COGS 121 Project
 
-##### Richard Pena
-##### Sadeem Khan
-##### Christian Lay
-##### Brandon Lien
+### Richard Pena
+### Sadeem Khan
+### Christian Lay
+### Brandon Lien
+---
+
 
 #### Project Proposal
 
 
-##### Farm2Fresh
+### Farm2Fresh
 ---
 Our target demographic is going to be Farmers who are just getting started and maybe need a little bit more knowledge in order to produce the best crop. So many factors come into play when picking a crop: soil, water, sunlight, plot size, temperature...
 None of our team members are part of the users population because we have no idea what it takes to manage a farm, choose the right crop, or what tools are neccessary for the varying sizes of farms. 
