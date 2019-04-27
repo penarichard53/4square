@@ -25,18 +25,18 @@
         $.ajax({url: url, success: (response) => { // API call
             var data = response
             for(var i = 0; i < data.list.length; i++) { // loop through response
-            console.log(data.list[i].dt_txt) // gets timestamp
-            timestamp = data.list[i].dt_txt
-            description = data.list[i].weather[0].description
-            temp = data.list[i].main.temp - 273.15
-            temp = Math.floor(temp * (9/5) + 32)
-            console.log(description);            
-            console.log(temp);           
-            console.log('\n\n\n\n\n\n\n\n\n')  
-            $('#weather').append(
-                '<li>'+timestamp + ' ' + description + ' ' + temp+'</li'
-            )
-        }
+                console.log(data.list[i].dt_txt) // gets timestamp
+                timestamp = data.list[i].dt_txt
+                description = data.list[i].weather[0].description
+                temp = data.list[i].main.temp - 273.15
+                temp = Math.floor(temp * (9/5) + 32)
+                console.log(description);            
+                console.log(temp);           
+                console.log('\n\n\n\n\n\n\n\n\n')  
+                $('#weather').append(
+                    '<li>'+timestamp + ' ' + description + ' ' + temp+'</li'
+                )
+            }
         }})
     })
 </script>
