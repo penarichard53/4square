@@ -21,22 +21,30 @@ app.get('/weather/:zipcode', (req,res) => {
     const zip = req.params.zipcode
     const countryCode = ',us'
     const url = API_URL + zip + countryCode + API_KEY
-    console.log(url)
+    var temp = {}
+    var description = {}
+    var timestamp = {}
+
+
 
     
     // returns 5 day weather data
     api_helper.make_API_call(url).then(response => {
         const data = response
         for(var i = 0; i < data.list.length; i++) {
-            if (i % 24 === 0 ) console.log("Day ", i)
-            console.log('\t\tHour ', i % 24)
-            console.log(data.list[i]) 
+            console.log(data.list[i].dt_txt) // gets timestamp
+            timestamp = data.list[i].dt_txt
+            description = data.list[i].weather[0].description
+            temp = data.list[i].main.temp - 273.15
+            temp = Math.floor(temp * (9/5) + 32)
+            console.log(description);            
+            console.log(temp);           
             console.log('\n\n\n\n\n\n\n\n\n')   
         }
         res.json(data)
     })
     .catch(error => {
-        console.log("error found")
+        console.log("error found", error)
     })    
 })
 
