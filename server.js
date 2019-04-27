@@ -1,6 +1,7 @@
 // init server framework
-const express =  require('express');
-const app = express();
+const express =  require('express')
+const api_helper = require('./api_helper')
+const app = express()
 
 const fakeDatabase = 
 {
@@ -10,6 +11,10 @@ const fakeDatabase =
 }
 app.get('/', (req,res) => { // home page
     res.sendFile(__dirname + '/' + 'index.html')
+})
+
+app.get('/weather', (req,res) => {
+    res.sendFile(__dirname + '/' + 'weather.html')
 })
 
 app.get('/home', (req,res) => {

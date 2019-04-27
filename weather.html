@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>4square</title>
+</head>
+<body>
+    <h1>Today's Weather</h1>
+    <div id="weather"></div>        
+</body>
+<script>
+    const API_KEY = '&APPID=4ff9698a7bda3347679b3f775e88ef89'   
+    const API_URL = 'https://api.openweathermap.org/data/2.5/forecast?zip='
+    const zip = 92126 // change zip code here
+    const url = API_URL + zip + ',us' + API_KEY // build the url
+    var temp = {}
+    var description = {}
+    var timestamp = {} 
+
+    $(document).ready( () => {
+
+        $.ajax({url: url, success: (response) => { // API call
+            var data = response
+            for(var i = 0; i < data.list.length; i++) { // loop through response
+            console.log(data.list[i].dt_txt) // gets timestamp
+            timestamp = data.list[i].dt_txt
+            description = data.list[i].weather[0].description
+            temp = data.list[i].main.temp - 273.15
+            temp = Math.floor(temp * (9/5) + 32)
+            console.log(description);            
+            console.log(temp);           
+            console.log('\n\n\n\n\n\n\n\n\n')  
+            $('#weather').append(
+                '<li>'+timestamp + ' ' + description + ' ' + temp+'</li'
+            )
+        }
+        }})
+    })
+</script>
+</html>
