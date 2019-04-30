@@ -17,8 +17,20 @@ app.get('/weather', (req,res) => {
     res.sendFile(__dirname + '/' + 'weather.html')
 })
 
-app.get('/home', (req,res) => {
-    res.sendFile(__dirname + '/' + 'home.html')
+app.get('/strawberry', (req,res) => {
+    res.sendFile(__dirname + '/' + 'strawberry.html')
+})
+
+app.get('/orange', (req,res) => {
+    res.sendFile(__dirname + '/' + 'orange.html')
+})
+
+app.get('/pineapple', (req,res) => {
+    res.sendFile(__dirname + '/' + 'pineapple.html')
+})
+
+app.get('/watermelon', (req,res) => {
+    res.sendFile(__dirname + '/' + 'watermelon.html')
 })
 
 app.get('/details/:cropName', (req,res) => {  
