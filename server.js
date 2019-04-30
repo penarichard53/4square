@@ -3,7 +3,7 @@ const express =  require('express')
 const api_helper = require('./api_helper')
 
 const app = express()
-app.use(express.static('fruits'));
+app.use(express.static('static_files'));
 
 const fakeDatabase = 
 {
