@@ -1,0 +1,7 @@
+.fruit {
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    border-width: 5px; 
+    border-color: rgb(21, 196, 21);
+}
