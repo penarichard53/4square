@@ -3,8 +3,7 @@ const express =  require('express')
 const api_helper = require('./api_helper')
 
 const app = express()
-app.use(express.static(__dirname + 'fruits'));
-
+app.use(express.static('fruits'));
 
 const fakeDatabase = 
 {
@@ -12,6 +11,8 @@ const fakeDatabase =
     'grapes': {soil: 'light', color: 'green'},
     'apples': {soil: 'medium', color: 'red'}
 }
+
+
 app.get('/', (req,res) => { // home page
     res.sendFile(__dirname + '/' + 'index.html')
 })
