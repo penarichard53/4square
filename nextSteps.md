@@ -1,4 +1,4 @@
-#### Everyone
+## Everyone
 + Head to [developer.awhere.com](https://developer.awhere.com/api/get-started) to get an **API Key + Secret** which 
 you will use for the remainder of development for our app. 
 + Get an API Development Environment such as [Postman](www.getpostman.com), [Paw](https://paw.cloud), or something similar
@@ -23,7 +23,7 @@ When the farmer gets to the homepage, there will be a number of plots available 
 [here](https://developer.awhere.com/api/reference/fields/get-fields).
 
 Loop through the results and create blocks for every field the farmer has. Let's say the farmer only has 2 plots, sunflower and cotton,
-then display 2 blocks with various information, such as `acres`, `name`, and anything else you may find relevant. __There isn't much else a__ `GET` __request offers in this scenario though__
+then display 2 blocks with various information, such as `acres`, `name`, and anything else you may find relevant. _There isn't much else a_ `GET` _request offers in this scenario though_
 
 Make these blocks link to Christian's portion of the project
 
