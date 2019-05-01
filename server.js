@@ -21,6 +21,10 @@ app.get('/weather', (req,res) => {
     res.sendFile(__dirname + '/' + 'weather.html')
 })
 
+app.get('/stories', (req,res) => {
+    res.sendFile(__dirname + '/' + 'stories.html')
+})
+
 app.get('/strawberry', (req,res) => {
     res.sendFile(__dirname + '/' + 'strawberry.html')
 })

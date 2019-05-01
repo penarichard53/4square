@@ -9,6 +9,7 @@
 	<link href="/css/bootstrap-theme.css" rel="stylesheet">
 	<link href="/css/bootstrap-slider.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
@@ -35,7 +36,34 @@
         <br>&nbsp;&nbsp;&nbsp;be right at the soil surface.
     </p>
 
-    <!---- name, number of plots, assigned farmer, soil quality graph , next crop suggestion.
-    -->
+    <div id="weather"></div>
+
+    
 </body>
+<script>
+const TOKEN = 'AMUMi8oVtIdSXkpzOEXB4PcGiGqx'
+const host = 'https://api.awhere.com'
+const uri = '/v2/weather/fields/cotton-field-1/forecasts?units=usa&limit=3&offset=3'
+$.ajax({
+    url: host + uri,
+    type: "GET",
+    beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
+    success: (response) => {
+        console.log(response.forecasts[0])  
+        for(var i = 0; i < 3;i++){
+            console.log('date = ' + response.forecasts[i].date);
+            $('#weather').append(
+                '<li>'+ 'date = ' + response.forecasts[i].date
+            )
+            for(var j = 0; j < 24; j++){
+                console.log(response.forecasts[i].forecast[j].conditionsText);
+                $('#weather').append(
+                    '<li>Hour:' + i + '-' + i+1 + ' ' + response.forecasts[i].forecast[j].conditionsText 
+                )
+            }
+        }
+    }
+})
+
+</script>
 </html
