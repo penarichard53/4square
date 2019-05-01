@@ -21,3 +21,27 @@ having the farm plots in the homepage and relevant news beneath it. For our
 fruit analysis we have changed it to give each crop their own page. We also
 deleted sections like the big FAQ page (rather implementing Q bubbles on each
 page) and the 'creative ideas' pages.
+
+### UI Webpages
+---
+
+### Homepage
+![Homepage.jpeg](Homepage.png)
+
+### Weather
+![Weather.jpeg](Weather.png)
+
+### Stories
+![Stories.jpeg](Stories.png)
+
+### Strawberry Page
+![Strawberry_Page.jpeg](Strawberry_Page.png)
+
+### Orange Page
+![Orange_Page.jpeg](Orange_Page.png)
+
+### Pineapple Page
+![Pineapple_Page.jpeg](Pineapple_Page.png)
+
+### Watermelon Page
+![Watermelon_Page.jpeg](Watermelon_Page.png)
