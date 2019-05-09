@@ -100,3 +100,11 @@ $(function() {
       break;
   }
 })
+
+
+
+/**
+ * Available fields
+ * fieldId: cotton-field-1, name=null
+ * fieldId: sunflower1, name="sunflower-elco"
+ */
