@@ -25,7 +25,7 @@
 
     <a href="weather"><button background-color='lightgreen'>Current Weather</button></a>
 
-    <div class="modal-body" id="plot">
+    <div class="modal-body" id="fields">
 
     <a href="crops?cropID=strawberry&fieldId=sunflower1"><img src="fruits/strawberry.jpg" id="strawberry" class="fruit"></a>
        
@@ -55,9 +55,17 @@
     })
     */
 
-    function parseFields(o) {        
+    
+
+    function parseFields(o) { 
+        
         for(var field of o['fields']){
-            console.log(field);
+            // console.log(field.name);
+            // console.log(field.id);
+            var elem = document.createElement('a')
+            elem.href = 'crops?cropID=' + field.name + '&fieldId=' + field.id
+            elem.innerHTML = '<img src="fruits/' + field.id +'.jpg" class="fruit">'
+            document.getElementById('fields').appendChild(elem)
         }
     }
 
