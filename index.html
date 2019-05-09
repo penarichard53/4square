@@ -44,6 +44,7 @@
 
 <script>
     const uri = '/v2/fields'
+    /*
     $.ajax({
         url: host + uri,
         type: "GET",
@@ -51,6 +52,17 @@
         success: (response) => {
             console.log(response)
         }
+    })
+    */
+
+    function parseFields(o) {        
+        for(var field of o['fields']){
+            console.log(field);
+        }
+    }
+
+    $(function() {
+        parseFields(allCrops)
     })
 </script>
 </html>
