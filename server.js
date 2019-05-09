@@ -15,7 +15,7 @@ const fakeDatabase =
 app.get('/crops', (req,res) => {
     console.log(req.query.cropID);
     
-    res.send("All done")
+    res.sendFile(__dirname + '/' + 'strawberry.html')
 })
 
 app.get('/', (req,res) => { // home page

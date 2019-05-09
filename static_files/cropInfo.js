@@ -1,4 +1,5 @@
-const strawberry = `<p> * Strawberry plants require 6-10 hours a day of direct sunlight, so choose  
+var strawberry = document.createElement('div')
+strawberry.innerHTML = `<p> * Strawberry plants require 6-10 hours a day of direct sunlight, so choose  
 <br>&nbsp;&nbsp;&nbsp;your planting site accordingly.   
 <br> * Strawberries are tolerant of different soil types, although they prefer loam. 
 <br>&nbsp;&nbsp;&nbsp;Ideally, begin working in aged manure or compost a couple months before planting. 
@@ -68,3 +69,15 @@ const orange = `<p> * Citrus trees should be planted in a sunny and wind-protect
 <br>&nbsp;&nbsp;&nbsp;plastic bag or wrap and let it sit in a warm and sunny spot for a few weeks until the seeds 
 <br>&nbsp;&nbsp;&nbsp;start to grow. Then, remove the plastic but keep the pot near a warm and sunny window.
 </p>`;
+
+const url = new URL(window.location)
+const params = new URLSearchParams(url.search)
+
+$(function() {
+  console.log(params.get("cropID"));
+  const crop = params.get("cropID")
+  var elem = document.getElementById('crop-facts')
+  switch(crop) {
+    case "strawberry": elem.appendChild(strawberry); break;
+  }
+})
