@@ -12,6 +12,11 @@ const fakeDatabase =
     'apples': {soil: 'medium', color: 'red'}
 }
 
+app.get('/crops', (req,res) => {
+    console.log(req.query.cropID);
+    
+    res.send("All done")
+})
 
 app.get('/', (req,res) => { // home page
     res.sendFile(__dirname + '/' + 'index.html')
