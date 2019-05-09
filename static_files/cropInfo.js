@@ -17,7 +17,8 @@ strawberry.innerHTML = `<p> * Strawberry plants require 6-10 hours a day of dire
 <br>&nbsp;&nbsp;&nbsp;be right at the soil surface.
 </p>`;
 
-const watermelon = `<p> * If you live in warmer climes, you can sow seeds directly outdoors, but wait until the soil 
+var watermelon = document.createElement('div')
+watermelon.innerHTML = `<p> * If you live in warmer climes, you can sow seeds directly outdoors, but wait until the soil 
 <br>&nbsp;&nbsp;&nbsp;temperature warms to at least 70°F to avoid poor germination.
 <br> * Watermelon vines are very tender and should not be transplanted until all danger of frost 
 <br>&nbsp;&nbsp;&nbsp;has passed. (To be safe, wait at least two weeks past your last frost date.)
@@ -33,7 +34,8 @@ const watermelon = `<p> * If you live in warmer climes, you can sow seeds direct
 <br>&nbsp;&nbsp;&nbsp;covers when you see both male and female flowers on the vine.
 </p>`;
 
-const pineapple = `<p> * <b>Plant Location:</b> Your pineapple needs bright light or full sun for most of the day. It can 
+var pineapple = document.createElement('div')
+pineapple.innerHTML = `<p> * <b>Plant Location:</b> Your pineapple needs bright light or full sun for most of the day. It can 
 <br>&nbsp;&nbsp;&nbsp;handle a little bit of shade as long as there’s plenty of light. Keep the plant away from 
 <br>&nbsp;&nbsp;&nbsp;freezing temperatures. The large pineapple plant in the photos spends the winter in an unheated
 <br>&nbsp;&nbsp;&nbsp;North Carolina basement, in a warm sunny nook created by a large south-facing window.
@@ -57,7 +59,8 @@ const pineapple = `<p> * <b>Plant Location:</b> Your pineapple needs bright ligh
 <br>&nbsp;&nbsp;&nbsp;planted in their own pots.
 </p>`;
 
-const orange = `<p> * Citrus trees should be planted in a sunny and wind-protected area.
+var orange = document.createElement('div')
+orange.innerHTML = `<p> * Citrus trees should be planted in a sunny and wind-protected area.
 <br> * In the citrus belt (a loosely defined area stretching from southern California to Florida), 
 <br>&nbsp;&nbsp;&nbsp;trees can be planted at any time, however, spring is the best time for container-grown plants.
 <br> * Standard-size citrus trees should be spaced 12 to 25 feet apart and dwarf citrus trees should 
@@ -74,10 +77,25 @@ const url = new URL(window.location)
 const params = new URLSearchParams(url.search)
 
 $(function() {
-  console.log(params.get("cropID"));
   const crop = params.get("cropID")
-  var elem = document.getElementById('crop-facts')
+  var facts = document.getElementById('crop-facts')
+  var img = document.getElementById('crop-img')
+  var name = document.getElementById('crop-name')
+  var i = document.createElement('img')
   switch(crop) {
-    case "strawberry": elem.appendChild(strawberry); break;
+    case "strawberry": 
+      facts.appendChild(strawberry); 
+      i.src = 'fruits/strawberry.jpg'
+      img.appendChild(i)
+      break;
+    case "pineapple": 
+      facts.appendChild(pineapple); 
+      break;
+    case "watermelon": 
+      facts.appendChild(watermelon); 
+      break;
+    case "orange": 
+      facts.appendChild(orange); 
+      break;
   }
 })
