@@ -107,4 +107,6 @@ $(function() {
  * Available fields
  * fieldId: cotton-field-1, name=null
  * fieldId: sunflower1, name="sunflower-elco"
+ * fieldId: canola-field-1, name="canola-elco"
+ * fieldId: oat-field-1, name="oat-sf"
  */
