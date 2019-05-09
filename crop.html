@@ -14,11 +14,13 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
-    <h1 id="crop-name"></h1> 
+    <h1  id="crop-name"></h1> 
     <div id="crop-img"></div>
     <div id="crop-facts"></div>
-    <div id="weather"></div>    
+    <div id="weather"></div>   
 </body>
+
+
 <script>
 const TOKEN = '3MOqSS22FoGSL0o2y3KzNG6oNNfq' // updated 10:29:50 May 9, expires 11:29:50 May 9
 const host = 'https://api.awhere.com'
@@ -37,14 +39,16 @@ $.ajax({
             )
             for(var j = 0; j < 24; j++){
                 console.log(response.forecasts[i].forecast[j].conditionsText);
+                const v = j+1
                 $('#weather').append(
-                    '<li>Hour:' + i + '-' + i+1 + ' ' + response.forecasts[i].forecast[j].conditionsText 
+                    '<li>Hour:' + j + '-' + v + ' ' + response.forecasts[i].forecast[j].conditionsText 
                 )
             }
         }
     }
 })
 */
+
 
 </script>
 </html
