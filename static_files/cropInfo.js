@@ -86,6 +86,7 @@ $(function() {
     case "strawberry": 
       facts.appendChild(strawberry); 
       i.src = 'fruits/strawberry.jpg'
+      name.innerHTML = "Strawberry"
       img.appendChild(i)
       break;
     case "pineapple": 
