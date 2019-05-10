@@ -8,16 +8,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>  
 </head>
 <body>
-    <form onclick="submitRequest()">
-        <input type="Submit" value="Submit">
+    <form onsubmit="submitRequest()" action="/" method=POST>
+        Field Id:<br>
+        <input type="text" name="field-id" required><br>
+        Name of Field: (optional)<br>
+        <input type="text" name="field-name"><br>
+        Farm Id:<br>
+        <input type="text" name="farm-id" required><br>
+        Acres: (optional) <br>
+        <input type="text" name="farm-acres"><br>
+        Latitude: (decimal number)<br>
+        <input type="text" name="farm-latitude" required><br>
+        Longitude: (decimal number)<br>
+        <input type="text" name="farm-longitude" required><br>
+        <input type="Submit" value="Submit" >
     </form>
 </body>
 
 <script>
     const uri = '/v2/fields'
-    function submitRequest() {
-        
-        alert("You should now see the crop you just added!")
+    function submitRequest() {        
+        alert("You should now see the crop you just added!")        
     }
 </script>
 </html>

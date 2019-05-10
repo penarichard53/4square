@@ -48,14 +48,8 @@ app.get('/watermelon', (req,res) => {
     res.sendFile(__dirname + '/' + 'watermelon.html')
 })
 
-app.get('/details/:cropName', (req,res) => {  
-    const cName = req.params.cropName  
-    const val = fakeDatabase[cName]
-    if (val) {
-        res.send(val)
-    } else {
-        res.send({})
-    }
+app.post('/', (req,res) => {
+    res.sendFile(__dirname + '/' + 'index.html')
 })
 
 app.listen(3000, () => { // set server to listen on port 3000
