@@ -49,14 +49,17 @@
         url: host + uri,
         type: "GET",
         beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
-        success: (response) => {
-            console.log(response)
+        success: (o) => { // object o is the param
+            for(var field of o['fields']){ // iterate through each field returned                
+                var elem = document.createElement('a')
+                elem.href = 'crops?cropID=' + field.name + '&fieldId=' + field.id
+                elem.innerHTML = '<img src="fruits/' + field.id +'.jpg" class="fruit">'
+                document.getElementById('fields').appendChild(elem)
+            }
         }
     })
     */
-
     
-
     function parseFields(o) { 
         
         for(var field of o['fields']){
@@ -72,5 +75,6 @@
     $(function() {
         parseFields(allCrops)
     })
+    
 </script>
 </html>
