@@ -1,4 +1,4 @@
-const TOKEN = 'YRRRHEM8z8uZwQaBCvo6Q7ntXGZw'
+const TOKEN = 'uLhSkknlkzx0zPvGZ97fwbTGu4dw'
 const HOST = 'https://api.awhere.com'
 
 // init server framework
@@ -13,6 +13,10 @@ const app = express()
 app.use(express.static('static_files'));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+app.get('/agronomic', (req,res) => {     
+    res.sendFile(__dirname + '/' + 'agronomic.html')
+})
 
 app.get('/field', (req,res) => {     
     res.sendFile(__dirname + '/' + 'field.html')
