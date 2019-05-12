@@ -17,8 +17,7 @@
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="weather">Weather Report</a></li>                
-                <li><a href="addField">Add a new field</a></li>    
-                <li><a href="addCrop">Add a new crop</a></li>                            
+                <li><a href="addField">Add a new field</a></li>                                                
             </ul>
         </nav>
     </div>
@@ -39,8 +38,8 @@
         success: (o) => { // object o is the param
             for(var field of o['fields']){ // iterate through each field returned                
                 var elem = document.createElement('a')
-                elem.href = 'crops?cropID=' + field.name + '&fieldId=' + field.id
-                elem.innerHTML = '<img src="fruits/' + field.id +'.jpg" class="fruit">'
+                elem.href = 'field?cropID=' + field.name + '&fieldId=' + field.id
+                elem.innerHTML = '<li>' + field.name + '</li>'
                 document.getElementById('fields').appendChild(elem)
             }
         }
@@ -54,7 +53,7 @@
             // console.log(field.id);
             var elem = document.createElement('a')
             elem.href = 'crops?cropID=' + field.name + '&fieldId=' + field.id
-            elem.innerHTML = '<img src="fruits/' + field.id +'.jpg" class="fruit">'
+            elem.innerHTML = '<li>' + field.name + '</li>'
             document.getElementById('fields').appendChild(elem)
         }
     }

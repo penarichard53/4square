@@ -14,18 +14,16 @@ app.use(express.static('static_files'));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-app.get('/crops', (req,res) => {    
-    res.sendFile(__dirname + '/' + 'crop.html')
+app.get('/field', (req,res) => {     
+    res.sendFile(__dirname + '/' + 'field.html')
 })
-
 
 app.get('/addCrop', (req,res) => {    
     res.sendFile(__dirname + '/' + 'addCrop.html')
 })
 
-app.post('/addCrop', (req,res) => {
-    // TODO need to figure out how to get fieldId before adding crop
-    const uri = '/v2/agronomics/fields/' + req.body.fieldId + '/plantings'
+app.post('/addCrop:fieldId', (req,res) => {    
+    const uri = '/v2/agronomics/fields/' + req.params.fieldId + '/plantings'
     
     const options = {
         url: HOST + uri,
