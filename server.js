@@ -1,16 +1,14 @@
 // init server framework
 const express =  require('express')
-
+const request = require('request')
+const config = require('./static_files/config.js')
+var bodyParser = require('body-parser');
 
 const app = express()
-app.use(express.static('static_files'));
 
-const fakeDatabase = 
-{
-    'corn': {soil: 'dark', color: 'yellow'},
-    'grapes': {soil: 'light', color: 'green'},
-    'apples': {soil: 'medium', color: 'red'}
-}
+app.use(express.static('static_files'));
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.get('/crops', (req,res) => {    
     res.sendFile(__dirname + '/' + 'crop.html')
@@ -42,6 +40,34 @@ app.get('/orange', (req,res) => {
 
 app.get('/pineapple', (req,res) => {
     res.sendFile(__dirname + '/' + 'pineapple.html')
+})
+
+app.post('/addField', (req,res) => {
+    const uri = '/v2/fields'
+    const options = {
+        url: config.HOST + uri,
+        method: 'POST',        
+        headers: {
+            'Authorization': 'Bearer ' + config.TOKEN             
+        },
+        json: true,
+        body: {
+            iD: req.body.fieldId,
+            name: req.body.name,
+            farmId: req.body.farmId,
+            acres: req.body.acres,
+            centerPoint: {
+                latitude: parseFloat(req.body.latitude),
+                longitude: parseFloat(req.body.latitude)
+            }
+        }
+    }
+    request(options, function(err,response,body){        
+        console.log(body);
+        // console.log(options)        
+    })
+
+    res.send("request complete")
 })
 
 app.get('/watermelon', (req,res) => {

@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>  
 </head>
 <body>
-    <form>
+    <form method="POST">
         Field Id:<br>
         <input type="text" name="fieldId" id="fieldId"required><br>
         Name of Field: (optional)<br>
@@ -37,28 +37,6 @@
                 "latitude": $('latitude'),
                 "longitude": $('longitude')
             }
-        }
-    $("form").on("submit", function(e) {
-        e.preventDefault()
-        $.ajax({
-            url: host + uri,
-            type: "POST",
-            data: JSON.stringify(formData),
-            crossDomain: true,   
-            contentType: "application/json",
-            beforeSend: (xhr) => {
-                xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)                
-                // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-            },
-            success: (response) => {
-                console.log(response)
-                alert("You should now see the field you just added!")                
-            },            
-            error: function (req, ajaxOptions, thrownError) {                
-                console.log(req.responseText)
-                alert("ERROR FOUND")
-            }
-        })          
-    })
+        }        
 </script>
 </html>
