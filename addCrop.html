@@ -8,6 +8,7 @@
 </head>
 <body>
     <form method="POST">
+        <input type="text" name="fieldId" value="test-field-1"><br>
         Crop:       
         <select name="crop" required>
             <option value="barley-generic">Barley</option>
@@ -25,29 +26,29 @@
         <input type="text" name="plantingDate" placeholder="YYYY-MM-DD" required><br>
 
         Projected Yield Amount: 
-        <input type="text" name="projectedYieldAmount">
+        <input type="text" name="projectedYieldAmount" required>
         Projected Yield Units:
-        <input type="text" nam="projectedYieldUnits">
+        <input type="text" name="projectedYieldUnits" required> 
         <div class="tooltip">(details)
             <span class="tooltiptext">The projected yield can be any amount and any units (bushels, boxes, etc). This is an optional set of fields, but if one is set the other must be as well.</span>
         </div><br>
 
         Projected Harvest Date:
-        <input type="text" name="projectedHarvestDate" placeholder="YYYY-MM-DD">
+        <input type="text" name="projectedHarvestDate" placeholder="YYYY-MM-DD" required>
         <div class="tooltip">(details)
             <span class="tooltiptext">The projected harvest date at the start of the season.</span>
         </div><br>
 
         Yield Amount:
-        <input type="text" name="actualYieldAmount">
+        <input type="text" name="actualYieldAmount" required>
         Yield Units:
-        <input type="text" name="actualYieldUnits">
+        <input type="text" name="actualYieldUnits" required>
         <div class="tooltip">(details)
             <span class="tooltiptext">The actual yield can be any amount and any units (bushels, boxes, etc). This is an optional set of fields, but if one is set the other must be as well.</span>
         </div><br>
 
         Harvest Date:
-        <input type="text" name="harvestDate" placeholder="YYYY-MM-DD">
+        <input type="text" name="harvestDate" placeholder="YYYY-MM-DD" required>
         <div class="tooltip">(details)
             <span class="tooltiptext">The actual harvest date at the end of the season.</span>
         </div><br>

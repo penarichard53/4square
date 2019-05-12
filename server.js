@@ -1,4 +1,4 @@
-const TOKEN = 'AMrzGZ3OcA3w3EAgbJbbIQqaFH6l'
+const TOKEN = 'jkBbTNN7CunBADxtMF5Vmf8n3oz5'
 const HOST = 'https://api.awhere.com'
 
 // init server framework
@@ -18,17 +18,15 @@ app.get('/crops', (req,res) => {
     res.sendFile(__dirname + '/' + 'crop.html')
 })
 
-app.get('/addField', (req,res) => {    
-    res.sendFile(__dirname + '/' + 'addField.html')
-})
 
 app.get('/addCrop', (req,res) => {    
     res.sendFile(__dirname + '/' + 'addCrop.html')
 })
 
-app.post('/addCrop:fieldId', (req,res) => {
-    const fieldId = req.params.fieldId
-    const uri = '/v2/agronomics/fields/' + fieldId + '/plantings'
+app.post('/addCrop', (req,res) => {
+    // TODO need to figure out how to get fieldId before adding crop
+    const uri = '/v2/agronomics/fields/' + req.body.fieldId + '/plantings'
+    
     const options = {
         url: HOST + uri,
         method: 'POST',
@@ -38,7 +36,7 @@ app.post('/addCrop:fieldId', (req,res) => {
         json: true,
         body: {
             crop: req.body.crop,
-            plantingDate: req.body.plantingDate,
+            plantingDate: req.body.plantingDate,            
             projections: {
                 yield: {
                     amount: req.body.projectedYieldAmount,
@@ -51,8 +49,15 @@ app.post('/addCrop:fieldId', (req,res) => {
                 units: req.body.actualYieldUnits
             },
             harvestDate: req.body.harvestDate
+            
         }
     }
+    request(options, function(err,response,body){        
+        console.log(body);
+        // console.log(options)        
+    })
+
+    res.send("request complete")
 })
 
 
@@ -66,6 +71,10 @@ app.get('/weather', (req,res) => {
 
 app.get('/stories', (req,res) => {
     res.sendFile(__dirname + '/' + 'stories.html')
+})
+
+app.get('/addField', (req,res) => {    
+    res.sendFile(__dirname + '/' + 'addField.html')
 })
 
 app.post('/addField', (req,res) => {
