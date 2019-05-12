@@ -1,8 +1,10 @@
 // init server framework
 const express =  require('express')
 const request = require('request')
-const config = require('./static_files/config.js')
 var bodyParser = require('body-parser');
+
+const TOKEN = 'DNVGsSBjCJNzzRsc0cYrFLarXPIM'
+const HOST = 'https://api.awhere.com'
 
 const app = express()
 
@@ -45,10 +47,10 @@ app.get('/pineapple', (req,res) => {
 app.post('/addField', (req,res) => {
     const uri = '/v2/fields'
     const options = {
-        url: config.HOST + uri,
+        url: HOST + uri,
         method: 'POST',        
         headers: {
-            'Authorization': 'Bearer ' + config.TOKEN             
+            'Authorization': 'Bearer ' + TOKEN             
         },
         json: true,
         body: {
@@ -68,6 +70,22 @@ app.post('/addField', (req,res) => {
     })
 
     res.send("request complete")
+})
+
+app.post('/addCrop:fieldId', (req,res) => {
+    const fieldId = req.params.fieldId
+    const uri = '/v2/agronomics/fields/' + fieldId + '/plantings'
+    const options = {
+        url: HOST + uri,
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + TOKEN
+        },
+        json: true,
+        body: {
+            
+        }
+    }
 })
 
 
