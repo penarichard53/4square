@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Add a Crop!</title>
     <link rel="stylesheet" href="tooltip.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
 </head>
 <body>
     <form method="POST">
-        <input type="text" name="fieldId" value="test-field-1"><br>
+        <input type="text" name="fieldId" id="input-fieldId" value=""><br>
         Crop:       
         <select name="crop" required>
             <option value="barley-generic">Barley</option>
@@ -56,6 +57,13 @@
         <input type="Submit" value="Submit">
     </form>
 </body>
-</html>
+<script>
+    const urlv3 = new URL(window.location)
+    const paramsv3 = new URLSearchParams(urlv3.search)
 
-<!-- <popup-info img="default.png" text=""> -->
+    $(document).ready( () => {
+        console.log(paramsv3);        
+        document.getElementById('input-fieldId').value = paramsv3.get("fieldId")
+    })
+</script>
+</html>
