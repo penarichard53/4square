@@ -8,7 +8,7 @@
 </head>
 <body>
     <form method="POST">
-        Crop:<br>        
+        Crop:       
         <select name="crop" required>
             <option value="barley-generic">Barley</option>
             <option value="canola-generic">Canola</option>            
@@ -16,15 +16,43 @@
             <option value="oat-generic">Oats</option>
             <option value="sugarbeet-generic">Sugarbeet</option>
             <option value="sunflower-generic">Sunflower</option>            
-        </select>
-        <br>
+        </select><br>
 
         Planting Date: 
         <div class="tooltip">(details)
             <span class="tooltiptext">The date the crop was planted in the field.</span>
+        </div>
+        <input type="text" name="plantingDate" placeholder="YYYY-MM-DD" required><br>
+
+        Projected Yield Amount: 
+        <input type="text" name="projectedYieldAmount">
+        Projected Yield Units:
+        <input type="text" nam="projectedYieldUnits">
+        <div class="tooltip">(details)
+            <span class="tooltiptext">The projected yield can be any amount and any units (bushels, boxes, etc). This is an optional set of fields, but if one is set the other must be as well.</span>
         </div><br>
-                
-        <input type="Submit" value="Submit" >
+
+        Projected Harvest Date:
+        <input type="text" name="projectedHarvestDate" placeholder="YYYY-MM-DD">
+        <div class="tooltip">(details)
+            <span class="tooltiptext">The projected harvest date at the start of the season.</span>
+        </div><br>
+
+        Yield Amount:
+        <input type="text" name="actualYieldAmount">
+        Yield Units:
+        <input type="text" name="actualYieldUnits">
+        <div class="tooltip">(details)
+            <span class="tooltiptext">The actual yield can be any amount and any units (bushels, boxes, etc). This is an optional set of fields, but if one is set the other must be as well.</span>
+        </div><br>
+
+        Harvest Date:
+        <input type="text" name="actualHarvestDate" placeholder="YYYY-MM-DD">
+        <div class="tooltip">(details)
+            <span class="tooltiptext">The actual harvest date at the end of the season.</span>
+        </div><br>
+
+        <input type="Submit" value="Submit">
     </form>
 </body>
 </html>
