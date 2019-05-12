@@ -37,20 +37,20 @@ app.post('/addCrop:fieldId', (req,res) => {
         },
         json: true,
         body: {
-            crop: '',
-            plantingDate: '',
+            crop: req.body.crop,
+            plantingDate: req.body.plantingDate,
             projections: {
                 yield: {
-                    amount: '',
-                    units: ''
+                    amount: req.body.projectedYieldAmount,
+                    units: req.body.projectedYieldUnits
                 },
-                harvestDate: ''
+                harvestDate: req.body.projectedHarvestDate
             },
             yield: {
-                amount: '',
-                units: ''
+                amount: req.body.actualYieldAmount,
+                units: req.body.actualYieldUnits
             },
-            harvestDate: ''
+            harvestDate: req.body.harvestDate
         }
     }
 })
