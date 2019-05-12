@@ -58,7 +58,7 @@ app.post('/addField', (req,res) => {
             acres: req.body.acres,
             centerPoint: {
                 latitude: parseFloat(req.body.latitude),
-                longitude: parseFloat(req.body.latitude)
+                longitude: parseFloat(req.body.longitude)
             }
         }
     }
@@ -69,6 +69,7 @@ app.post('/addField', (req,res) => {
 
     res.send("request complete")
 })
+
 
 app.get('/watermelon', (req,res) => {
     res.sendFile(__dirname + '/' + 'watermelon.html')
