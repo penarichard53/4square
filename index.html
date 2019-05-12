@@ -17,16 +17,12 @@
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="weather">Weather Report</a></li>                
-                <li><a href="addCrop">Add a new crop</a></li>
+                <li><a href="addField">Add a new field</a></li>                                                
             </ul>
         </nav>
     </div>
 
-    <div class="modal-body" id="fields">
-        <a href="crops?cropID=strawberry&fieldId=sunflower1"><img src="fruits/strawberry.jpg" id="strawberry" class="fruit"></a>
-        <a href="crops?cropID=orange&fieldId=cotton-field-1"><img src="fruits/orange.jpg" id="orange" class="fruit"></a>
-        <a href="crops?cropID=pineapple"><img src="fruits/pineapple.jpg" id="pineapple" class="fruit"/></a>
-        <a href="crops?cropID=watermelon"><img src="fruits/watermelon.jpg" id="watermelon" class="fruit"/></a>        
+    <div class="modal-body" id="fields">        
     </div>    
 
     <button onclick="window.location='stories';">Top Stories</button>
@@ -34,7 +30,7 @@
 
 <script>
     const uri = '/v2/fields'
-    /*
+    
     $.ajax({
         url: host + uri,
         type: "GET",
@@ -42,14 +38,14 @@
         success: (o) => { // object o is the param
             for(var field of o['fields']){ // iterate through each field returned                
                 var elem = document.createElement('a')
-                elem.href = 'crops?cropID=' + field.name + '&fieldId=' + field.id
-                elem.innerHTML = '<img src="fruits/' + field.id +'.jpg" class="fruit">'
+                elem.href = 'field?cropID=' + field.name + '&fieldId=' + field.id
+                elem.innerHTML = '<li>' + field.name + '</li>'
                 document.getElementById('fields').appendChild(elem)
             }
         }
     })
-    */
     
+    /*
     function parseFields(o) { 
         
         for(var field of o['fields']){
@@ -57,7 +53,7 @@
             // console.log(field.id);
             var elem = document.createElement('a')
             elem.href = 'crops?cropID=' + field.name + '&fieldId=' + field.id
-            elem.innerHTML = '<img src="fruits/' + field.id +'.jpg" class="fruit">'
+            elem.innerHTML = '<li>' + field.name + '</li>'
             document.getElementById('fields').appendChild(elem)
         }
     }
@@ -65,6 +61,7 @@
     $(function() {
         parseFields(allCrops)
     })
+    */
     
 </script>
 </html>

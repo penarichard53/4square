@@ -3,32 +3,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add a new Crop</title>
-    <script src="config.js"></script>        
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>  
+    <title>Add a Crop!</title>
+    <link rel="stylesheet" href="tooltip.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
 </head>
 <body>
-    <form onsubmit="submitRequest()" action="/" method=POST>
-        Field Id:<br>
-        <input type="text" name="field-id" required><br>
-        Name of Field: (optional)<br>
-        <input type="text" name="field-name"><br>
-        Farm Id:<br>
-        <input type="text" name="farm-id" required><br>
-        Acres: (optional) <br>
-        <input type="text" name="farm-acres"><br>
-        Latitude: (decimal number)<br>
-        <input type="text" name="farm-latitude" required><br>
-        Longitude: (decimal number)<br>
-        <input type="text" name="farm-longitude" required><br>
-        <input type="Submit" value="Submit" >
+    <form method="POST">
+        <input type="text" name="fieldId" id="input-fieldId" value=""><br>
+        Crop:       
+        <select name="crop" required>
+            <option value="barley-generic">Barley</option>
+            <option value="canola-generic">Canola</option>            
+            <option value="cotton-2200-gdd">Cotton</option>
+            <option value="oat-generic">Oats</option>
+            <option value="sugarbeet-generic">Sugarbeet</option>
+            <option value="sunflower-generic">Sunflower</option>            
+        </select><br>
+
+        Planting Date: 
+        <div class="tooltip">(details)
+            <span class="tooltiptext">The date the crop was planted in the field.</span>
+        </div>
+        <input type="text" name="plantingDate" placeholder="YYYY-MM-DD" required><br>
+
+        Projected Yield Amount: 
+        <input type="text" name="projectedYieldAmount" required>
+        Projected Yield Units:
+        <input type="text" name="projectedYieldUnits" required> 
+        <div class="tooltip">(details)
+            <span class="tooltiptext">The projected yield can be any amount and any units (bushels, boxes, etc). This is an optional set of fields, but if one is set the other must be as well.</span>
+        </div><br>
+
+        Projected Harvest Date:
+        <input type="text" name="projectedHarvestDate" placeholder="YYYY-MM-DD" required>
+        <div class="tooltip">(details)
+            <span class="tooltiptext">The projected harvest date at the start of the season.</span>
+        </div><br>
+
+        Yield Amount:
+        <input type="text" name="actualYieldAmount" required>
+        Yield Units:
+        <input type="text" name="actualYieldUnits" required>
+        <div class="tooltip">(details)
+            <span class="tooltiptext">The actual yield can be any amount and any units (bushels, boxes, etc). This is an optional set of fields, but if one is set the other must be as well.</span>
+        </div><br>
+
+        Harvest Date:
+        <input type="text" name="harvestDate" placeholder="YYYY-MM-DD" required>
+        <div class="tooltip">(details)
+            <span class="tooltiptext">The actual harvest date at the end of the season.</span>
+        </div><br>
+
+        <input type="Submit" value="Submit">
     </form>
 </body>
-
 <script>
-    const uri = '/v2/fields'
-    function submitRequest() {        
-        alert("You should now see the crop you just added!")        
-    }
+    const urlv3 = new URL(window.location)
+    const paramsv3 = new URLSearchParams(urlv3.search)
+
+    $(document).ready( () => {
+        console.log(paramsv3);        
+        document.getElementById('input-fieldId').value = paramsv3.get("fieldId")
+    })
 </script>
 </html>
