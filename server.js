@@ -1,10 +1,12 @@
+const TOKEN = 'AMrzGZ3OcA3w3EAgbJbbIQqaFH6l'
+const HOST = 'https://api.awhere.com'
+
 // init server framework
 const express =  require('express')
 const request = require('request')
 var bodyParser = require('body-parser');
 
-const TOKEN = 'AMrzGZ3OcA3w3EAgbJbbIQqaFH6l'
-const HOST = 'https://api.awhere.com'
+
 
 const app = express()
 
@@ -22,58 +24,6 @@ app.get('/addField', (req,res) => {
 
 app.get('/addCrop', (req,res) => {    
     res.sendFile(__dirname + '/' + 'addCrop.html')
-})
-
-app.get('/', (req,res) => { // home page
-    res.sendFile(__dirname + '/' + 'index.html')
-})
-
-app.get('/weather', (req,res) => {
-    res.sendFile(__dirname + '/' + 'weather.html')
-})
-
-app.get('/stories', (req,res) => {
-    res.sendFile(__dirname + '/' + 'stories.html')
-})
-
-app.get('/strawberry', (req,res) => {
-    res.sendFile(__dirname + '/' + 'strawberry.html')
-})
-
-app.get('/orange', (req,res) => {
-    res.sendFile(__dirname + '/' + 'orange.html')
-})
-
-app.get('/pineapple', (req,res) => {
-    res.sendFile(__dirname + '/' + 'pineapple.html')
-})
-
-app.post('/addField', (req,res) => {
-    const uri = '/v2/fields'
-    const options = {
-        url: HOST + uri,
-        method: 'POST',        
-        headers: {
-            'Authorization': 'Bearer ' + TOKEN             
-        },
-        json: true,
-        body: {
-            iD: req.body.fieldId,
-            name: req.body.name,
-            farmId: req.body.farmId,
-            acres: req.body.acres,
-            centerPoint: {
-                latitude: parseFloat(req.body.latitude),
-                longitude: parseFloat(req.body.longitude)
-            }
-        }
-    }
-    request(options, function(err,response,body){        
-        console.log(body);
-        // console.log(options)        
-    })
-
-    res.send("request complete")
 })
 
 app.post('/addCrop:fieldId', (req,res) => {
@@ -106,8 +56,44 @@ app.post('/addCrop:fieldId', (req,res) => {
 })
 
 
-app.get('/watermelon', (req,res) => {
-    res.sendFile(__dirname + '/' + 'watermelon.html')
+app.get('/', (req,res) => { // home page
+    res.sendFile(__dirname + '/' + 'index.html')
+})
+
+app.get('/weather', (req,res) => {
+    res.sendFile(__dirname + '/' + 'weather.html')
+})
+
+app.get('/stories', (req,res) => {
+    res.sendFile(__dirname + '/' + 'stories.html')
+})
+
+app.post('/addField', (req,res) => {
+    const uri = '/v2/fields'
+    const options = {
+        url: HOST + uri,
+        method: 'POST',        
+        headers: {
+            'Authorization': 'Bearer ' + TOKEN             
+        },
+        json: true,
+        body: {
+            iD: req.body.fieldId,
+            name: req.body.name,
+            farmId: req.body.farmId,
+            acres: req.body.acres,
+            centerPoint: {
+                latitude: parseFloat(req.body.latitude),
+                longitude: parseFloat(req.body.longitude)
+            }
+        }
+    }
+    request(options, function(err,response,body){        
+        console.log(body);
+        // console.log(options)        
+    })
+
+    res.send("request complete")
 })
 
 app.post('/', (req,res) => {
