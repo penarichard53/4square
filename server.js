@@ -3,7 +3,7 @@ const express =  require('express')
 const request = require('request')
 var bodyParser = require('body-parser');
 
-const TOKEN = 'DNVGsSBjCJNzzRsc0cYrFLarXPIM'
+const TOKEN = 'AMrzGZ3OcA3w3EAgbJbbIQqaFH6l'
 const HOST = 'https://api.awhere.com'
 
 const app = express()
@@ -18,6 +18,10 @@ app.get('/crops', (req,res) => {
 
 app.get('/addField', (req,res) => {    
     res.sendFile(__dirname + '/' + 'addField.html')
+})
+
+app.get('/addCrop', (req,res) => {    
+    res.sendFile(__dirname + '/' + 'addCrop.html')
 })
 
 app.get('/', (req,res) => { // home page

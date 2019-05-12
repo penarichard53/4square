@@ -4,9 +4,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Add a Crop!</title>
-    <script src="popUp.js"></script>
+    <link rel="stylesheet" href="tooltip.css">
 </head>
 <body>
-    
+    <form method="POST">
+        Crop:<br>        
+        <select name="crop" required>
+            <option value="barley-generic">Barley</option>
+            <option value="canola-generic">Canola</option>            
+            <option value="cotton-2200-gdd">Cotton</option>
+            <option value="oat-generic">Oats</option>
+            <option value="sugarbeet-generic">Sugarbeet</option>
+            <option value="sunflower-generic">Sunflower</option>            
+        </select>
+        <br>
+
+        Planting Date: 
+        <div class="tooltip">(details)
+            <span class="tooltiptext">The date the crop was planted in the field.</span>
+        </div><br>
+                
+        <input type="Submit" value="Submit" >
+    </form>
 </body>
 </html>
+
+<!-- <popup-info img="default.png" text=""> -->
