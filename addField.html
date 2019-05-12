@@ -8,27 +8,57 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>  
 </head>
 <body>
-    <form onsubmit="submitRequest()" action="/" method=POST>
+    <form>
         Field Id:<br>
-        <input type="text" name="field-id" required><br>
+        <input type="text" name="fieldId" id="fieldId"required><br>
         Name of Field: (optional)<br>
-        <input type="text" name="field-name"><br>
+        <input type="text" name="name" id="name"><br>
         Farm Id:<br>
-        <input type="text" name="farm-id" required><br>
+        <input type="text" name="farmId" id="farmId" required><br>
         Acres: (optional) <br>
-        <input type="text" name="farm-acres"><br>
+        <input type="text" name="acres" id="acres"><br>
         Latitude: (decimal number)<br>
-        <input type="text" name="farm-latitude" required><br>
+        <input type="text" name="latitude" id="latitude" required><br>
         Longitude: (decimal number)<br>
-        <input type="text" name="farm-longitude" required><br>
+        <input type="text" name="longitude" id="longitude" required><br>
         <input type="Submit" value="Submit" >
     </form>
 </body>
 
 <script>
-    const uri = '/v2/fields'
-    function submitRequest() {        
-        alert("You should now see the crop you just added!")        
-    }
+    const uri = '/v2/fields'     
+    var formData = 
+        {
+            "fieldId": $('#fieldId'),
+            "name": $('#name'),
+            "farmId": $('farmId'),
+            "acres": $('acres'),
+            "centerPoint": {
+                "latitude": $('latitude'),
+                "longitude": $('longitude')
+            }
+        }
+    $("form").on("submit", function(e) {
+        e.preventDefault()
+        $.ajax({
+            url: host + uri,
+            type: "POST",
+            data: JSON.stringify(formData),
+            crossDomain: true,   
+            contentType: "application/json",
+            beforeSend: (xhr) => {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)                
+                // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            },
+            success: (response) => {
+                console.log(response)
+                alert("You should now see the field you just added!")                
+            },            
+            error: function (req, ajaxOptions, thrownError) {                
+                console.log(req.responseText)
+                alert("ERROR FOUND")
+            }
+        })          
+    })
 </script>
 </html>

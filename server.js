@@ -16,8 +16,8 @@ app.get('/crops', (req,res) => {
     res.sendFile(__dirname + '/' + 'crop.html')
 })
 
-app.get('/addCrop', (req,res) => {    
-    res.sendFile(__dirname + '/' + 'addCrop.html')
+app.get('/addField', (req,res) => {    
+    res.sendFile(__dirname + '/' + 'addField.html')
 })
 
 app.get('/', (req,res) => { // home page
