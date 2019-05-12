@@ -1,4 +1,4 @@
-const TOKEN = 'jkBbTNN7CunBADxtMF5Vmf8n3oz5'
+const TOKEN = 'YRRRHEM8z8uZwQaBCvo6Q7ntXGZw'
 const HOST = 'https://api.awhere.com'
 
 // init server framework
