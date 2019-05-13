@@ -9,28 +9,38 @@
 </head>
 <body>
     <div id="agro-data"></div>
+    <body>This is agronomics</body>
 </body>
 <script>
     const urlv2 = new URL(window.location)
     const paramsv2 = new URLSearchParams(urlv2.search)    
-    const uri = '/v2/agronomics/fields' + paramsv2.get("fieldId") + '/agronomicnorms'
+    const uri = '/v2/agronomics/fields' + paramsv2.get("fieldId") + '/agronomicvalues'
+    
     /*
     $.ajax({
         url: host + uri,
         type: "GET",
         beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
-        success: (response) => {            
+        success: (response) => {    
+
+            document.getElementById('agro-data').appendChild(elem)        
         }
     })
     */
 
-    function parseFields(o) { 
-        console.log(o['averageAccumulations']);
+   /* function parseFields(o) { 
+
+        for(var field of o['fields'])
+            console.log(o['averageAccumulations']); //what is this?
+            var elem = document.createElement('a');
+            elem.href = 'crops?cropId=' + field.name + '&fieldId=' + field.id
+            elem.innerHTML = '<li>' + field.name + '</li>'
+            document.getElementById('agro-data').appendChild(elem)   
     }
 
     $(function() {
         parseFields(agronomicNorm)
-    })
+    })*/
     
 </script>
 </html>

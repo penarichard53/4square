@@ -1,4 +1,4 @@
-const TOKEN = 'uLhSkknlkzx0zPvGZ97fwbTGu4dw'
+const TOKEN = 'Nk8AK6nSQGogPI6JPq697N7ECFKJ' // updated 12:38 May 10, expires 13:38 May 10
 const HOST = 'https://api.awhere.com'
 
 // init server framework
@@ -77,6 +77,10 @@ app.get('/stories', (req,res) => {
 
 app.get('/addField', (req,res) => {    
     res.sendFile(__dirname + '/' + 'addField.html')
+})
+
+app.get('/agronomics', (req,res) => {    
+    res.sendFile(__dirname + '/' + 'agronomic.html')
 })
 
 app.post('/addField', (req,res) => {
