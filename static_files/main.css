@@ -5,3 +5,14 @@
     border-radius: 5px; 
     border-color: rgb(21, 196, 21);
 }
+
+a.homepage {
+	background-color: #05ffb0;
+	color: #203E09;
+	font-family: "Comic Sans MS";
+
+}
+
+a.homepage:visited {
+	color: #901CB3;
+}
