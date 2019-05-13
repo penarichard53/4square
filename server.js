@@ -1,4 +1,4 @@
-const TOKEN = 'Nk8AK6nSQGogPI6JPq697N7ECFKJ' // updated 12:38 May 10, expires 13:38 May 10
+const TOKEN = '14RUuQtG0MNLN8Fl4DSldf3NaxMt' // updated 11:44 May 13, expires 12:44 May 13
 const HOST = 'https://api.awhere.com'
 
 // init server framework
