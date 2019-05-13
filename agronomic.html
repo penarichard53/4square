@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+    <script src="config.js"></script>
+    <title>Your Field's Agronomic Data</title>
+</head>
+<body>
+    <div id="agro-data"></div>
+</body>
+<script>
+    const urlv2 = new URL(window.location)
+    const paramsv2 = new URLSearchParams(urlv2.search)    
+    const uri = '/v2/agronomics/fields' + paramsv2.get("fieldId") + '/agronomicnorms'
+    /*
+    $.ajax({
+        url: host + uri,
+        type: "GET",
+        beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
+        success: (response) => {            
+        }
+    })
+    */
+
+    function parseFields(o) { 
+        console.log(o['averageAccumulations']);
+    }
+
+    $(function() {
+        parseFields(agronomicNorm)
+    })
+    
+</script>
+</html>

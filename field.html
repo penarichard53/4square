@@ -11,6 +11,7 @@
 </head>
 <body>
     <div id="add-crop"></div>
+    <div id="get-agronomic"></div>
     <h1  id="crop-name"></h1> 
     <div id="crop-img"></div>
     <div id="crop-facts"></div>
@@ -24,7 +25,11 @@ const uri = '/v2/weather/fields/' + paramsv2.get("fieldId") + '/forecasts?units=
 var elem = document.createElement('a')
 elem.href = 'addCrop?fieldId=' + paramsv2.get("fieldId")
 elem.innerHTML = '<button>Add a crop to this field</button>'
+var agro = document.createElement('a')
+agro.href = 'agronomic/fields/' + paramsv2.get("fieldId") + '/agronomicnorms?unints=usa'
+agro.innerHTML = '<button>Check out historical agronomic data</button>'
 document.getElementById('add-crop').appendChild(elem)
+document.getElementById('get-agronomic').appendChild(agro)
 
 $.ajax({
     url: host + uri,
