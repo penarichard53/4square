@@ -79,10 +79,6 @@ app.get('/addField', (req,res) => {
     res.sendFile(__dirname + '/' + 'addField.html')
 })
 
-app.get('/agronomics', (req,res) => {    
-    res.sendFile(__dirname + '/' + 'agronomic.html')
-})
-
 app.post('/addField', (req,res) => {
     const uri = '/v2/fields'
     const options = {

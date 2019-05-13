@@ -14,7 +14,7 @@
 <script>
     const urlv2 = new URL(window.location)
     const paramsv2 = new URLSearchParams(urlv2.search)    
-    const uri = '/v2/agronomics/fields' + paramsv2.get("fieldId") + '/agronomicvalues'
+    const uri = '/v2/agronomics/fields' + paramsv2.get("fieldId") + '/agronomicnorms'
     
     /*
     $.ajax({
@@ -28,10 +28,10 @@
     })
     */
 
-   /* function parseFields(o) { 
+    function parseFields(o) { 
 
-        for(var field of o['fields'])
             console.log(o['averageAccumulations']); //what is this?
+        for(var field of o['fields'])
             var elem = document.createElement('a');
             elem.href = 'crops?cropId=' + field.name + '&fieldId=' + field.id
             elem.innerHTML = '<li>' + field.name + '</li>'
@@ -40,7 +40,7 @@
 
     $(function() {
         parseFields(agronomicNorm)
-    })*/
+    })
     
 </script>
 </html>
