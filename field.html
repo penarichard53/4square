@@ -42,33 +42,35 @@
     document.getElementById('add-crop').appendChild(elem)
     document.getElementById('get-agronomic').appendChild(agro)
 
-    /*
+    
     $.ajax({
         url: host + uri,
         type: "GET",
         beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
         success: (response) => {            
-            console.log(response.forecasts[0])  
-            for(var i = 0; i < 7;i++){
-                console.log('date = ' + response.forecasts[i].date);
-                $('#weather').append(
-                    '<li>'+ 'date = ' + response.forecasts[i].date
-                )
-                for(var j = 0; j < 24; j++){
-                    console.log(response.forecasts[i].forecast[j].conditionsText);
-                    const v = j+1
-                    $('#weather').append(
-                        '<li>Hour:' + j + '-' + v + ' ' + response.forecasts[i].forecast[j].conditionsText 
-                    )
-                }
-            }
-      
+            var chance = new Array(0,0,0,0,0,0,0); // chance of precipitation
+            var days = [];
             
+            for(i = 0; i < 7; i++){ // 7 days a week
+                const day = response.forecasts[i].date
+                console.log('date = ' + day);
+                days.push(day)
+                for(var j = 0; j < 24; j++){ // 24 hours a day
+                    const pptchance = response.forecasts[i].forecast[j].precipitation.chance;                             
+                    // console.log(response.forecasts[i].forecast[j].precipitation)
+                    // console.log("chance=" + chance + " chance[" + i + "]=" + chance[i]);
+                    if( pptchance > chance[i]){                                        
+                        chance[i] = pptchance; // if pptchance > 0 find max pptchance of day
+                    } 
+                }
+                
+            }
+                
+            generateChart(chance, days);
         }
-    })
-    */
+    })    
     
-
+    /*
     function parseWeather(response) {    
         var chance = new Array(0,0,0,0,0,0,0); // chance of precipitation
         var days = [];
@@ -80,15 +82,14 @@
             for(var j = 0; j < 24; j++){ // 24 hours a day
                 const pptchance = response.forecasts[i].forecast[j].precipitation.chance;                             
                 // console.log(response.forecasts[i].forecast[j].precipitation)
-                console.log("chance=" + chance + " chance[" + i + "]=" + chance[i]);
-                if( pptchance > chance[i]){
-                                        
-                    chance[i] = pptchance; // if chance > 0 get max chance
+                // console.log("chance=" + chance + " chance[" + i + "]=" + chance[i]);
+                if( pptchance > chance[i]){                                        
+                    chance[i] = pptchance; // if pptchance > 0 find max pptchance of day
                 } 
             }
             
         }
-        console.log(chance);        
+            
         generateChart(chance, days);
         
     }
@@ -96,6 +97,7 @@
     $(function() { 
         parseWeather(weatherResp);        
     })
+    */
 
     // chart.js
     function generateChart(data, labels) {        
