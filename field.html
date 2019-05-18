@@ -41,7 +41,7 @@
     agro.innerHTML = '<button>Check out historical agronomic data</button>'
     document.getElementById('add-crop').appendChild(elem)
     document.getElementById('get-agronomic').appendChild(agro)
-    
+
     /*
     $.ajax({
         url: host + uri,
@@ -66,56 +66,52 @@
     })
     */
 
-    function parseWeather(response) {
-        console.log(response)
+    function parseWeather(response) {    
+        var chance = [];
+        var days = [];
+        for(i = 0; i < 7; i++){ // 7 days a week
+            const day = response.forecasts[i].date
+            console.log('date = ' + day);
+            days.push(day)
+            for(var j = 0; j < 1; j++){ // 24 hours a day
+                const forecast = response.forecasts[i].forecast[j];
+                // console.log(forecast.precipitation)
+                chance.push(forecast.precipitation.chance)
+            }
+        }
+        console.log(chance);        
+        generateChart(chance, days);
+        
     }
 
     $(function() { 
-        parseWeather(weatherResp)
+        parseWeather(weatherResp);
+        
     })
-</script>
 
-
-<!-- chart.js -->
-<script>
-    var ctx = document.getElementById("myChart").getContext("2d");
-    var chartType = {        
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
+    // chart.js
+    function generateChart(data, labels) {        
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var chartType = {        
+            type: 'line',            
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    label: "Chance of Rain",
+                    fill: false,
+                    borderColor: "#8e5ea2"
                 }]
-            }
-        }
-    }
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Chance of rain for the next week"
+                }
+            }                
+        };
 
-    var myChart = new Chart(ctx, chartType)    
+        var myChart = new Chart(ctx, chartType);   
+    }
 </script>
 </html
