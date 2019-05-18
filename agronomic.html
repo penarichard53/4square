@@ -4,12 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="config.js"></script>
     <title>Your Field's Agronomic Data</title>
 </head>
 <body>    
     <body>This is agronomics</body>
+    <div class="chart-container" style="position: relative; height:740px; width:780px">
+        <canvas id="myChart"></canvas>
+    </div>
     <div id="agro-data"></div>
+
 
 </body>
 <script>
@@ -17,28 +22,91 @@
     const paramsv2 = new URLSearchParams(urlv2.search)    
     const uri = '/v2/agronomics/fields' + paramsv2.get("fieldId") + '/agronomicnorms'
     
-    /*
+    
     $.ajax({
         url: host + uri,
         type: "GET",
         beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
         success: (response) => {    
+            var days = [];
+            var gdd = [];
+            var pet = [];
+            var ppet = [];
+            for(var day of response["dailyNorms"]){
+                console.log(day);             
 
-            document.getElementById('agro-data').appendChild(elem)        
+                days.push(day.day)
+                gdd.push(day.gdd.average);
+                pet.push(day.pet.average);
+                ppet.push(day.ppet.average);
+            }
+            var dataset = new Array(gdd, pet, ppet);
+            console.log(dataset[0]);        
+            generateGraph(days, dataset);
         }
     })
-    */
+    
+    /*
 
     function parseFields(response) { 
         console.log(response["dailyNorms"]);
-        
+        var days = [];
+        var gdd = [];
+        var pet = [];
+        var ppet = [];
         for(var day of response["dailyNorms"]){
-            console.log(day);            
+            console.log(day);             
+
+            days.push(day.day)
+            gdd.push(day.gdd.average);
+            pet.push(day.pet.average);
+            ppet.push(day.ppet.average);
         }
+        var dataset = new Array(gdd, pet, ppet);
+        console.log(dataset[0]);        
+        generateGraph(days, dataset);
+    }
+    */
+
+    function generateGraph(days, data){
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var chartType = {        
+            type: 'line',            
+            data: {
+                labels: days,
+                datasets: [{
+                        data: data[0],
+                        label: "GDD",
+                        fill: false,
+                        borderColor: "#8e5ea2"
+                    }, {
+                        data: data[1],
+                        label: "PET",
+                        fill: false,
+                        borderColor: "#8e5ea2"
+                    }, {
+                        data: data[2],
+                        label: "PPET",
+                        fill: false,
+                        borderColor: "#8e5ea2"      
+                    } 
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Chance of rain for the next week"
+                }
+            }                
+        };
+
+        var myChart = new Chart(ctx, chartType);   
     }
 
+    
+
     $(function() {
-        parseFields(agronomicNorm)
+        // parseFields(agronomicNorm)
     })
     
 </script>
