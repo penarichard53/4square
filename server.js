@@ -6,8 +6,6 @@ const express =  require('express')
 const request = require('request')
 var bodyParser = require('body-parser');
 
-
-
 const app = express()
 
 app.use(express.static('static_files'));
