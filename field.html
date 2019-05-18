@@ -15,16 +15,15 @@
 
 <body>
     <p>Hello</p>
-    <div class="chart-container" style="position: relative; height:740px; width:780px">
-        <canvas id="myChart"></canvas>
-    </div>
-
     <div id="add-crop"></div>
     <div id="get-agronomic"></div>
     <h1  id="crop-name"></h1> 
     <div id="crop-img"></div>
     <div id="crop-facts"></div>
     <div id="weather"></div>   
+    <div class="chart-container" style="position: relative; height:740px; width:780px">
+        <canvas id="myChart"></canvas>
+    </div>
 </body>
 
 <!-- weather API -->
@@ -42,7 +41,7 @@
     document.getElementById('add-crop').appendChild(elem)
     document.getElementById('get-agronomic').appendChild(agro)
 
-    
+    /*
     $.ajax({
         url: host + uri,
         type: "GET",
@@ -69,8 +68,8 @@
             generateChart(chance, days);
         }
     })    
+    */
     
-    /*
     function parseWeather(response) {    
         var chance = new Array(0,0,0,0,0,0,0); // chance of precipitation
         var days = [];
@@ -97,7 +96,7 @@
     $(function() { 
         parseWeather(weatherResp);        
     })
-    */
+    
 
     // chart.js
     function generateChart(data, labels) {        
