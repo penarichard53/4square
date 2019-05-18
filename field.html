@@ -28,7 +28,7 @@
 </body>
 
 <!-- weather API -->
-<!--
+
 <script>
     const urlv2 = new URL(window.location)
     const paramsv2 = new URLSearchParams(urlv2.search)
@@ -41,7 +41,8 @@
     agro.innerHTML = '<button>Check out historical agronomic data</button>'
     document.getElementById('add-crop').appendChild(elem)
     document.getElementById('get-agronomic').appendChild(agro)
-
+    
+    /*
     $.ajax({
         url: host + uri,
         type: "GET",
@@ -63,8 +64,17 @@
             }
         }
     })
+    */
+
+    function parseWeather(response) {
+        console.log(response)
+    }
+
+    $(function() { 
+        parseWeather(weatherResp)
+    })
 </script>
--->
+
 
 <!-- chart.js -->
 <script>
