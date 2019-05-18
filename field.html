@@ -70,7 +70,7 @@
     
 
     function parseWeather(response) {    
-        var chance = [0,0,0,0,0,0,0]; // chance of precipitation
+        var chance = new Array(0,0,0,0,0,0,0); // chance of precipitation
         var days = [];
         
         for(i = 0; i < 7; i++){ // 7 days a week
@@ -78,10 +78,12 @@
             console.log('date = ' + day);
             days.push(day)
             for(var j = 0; j < 24; j++){ // 24 hours a day
-                const chance = response.forecasts[i].forecast[j].precipitation.chance;                             
-                console.log(response.forecasts[i].forecast[j].precipitation)
-                if( chance > chance[i]){
-                    chance[i] = chance; // if chance > 0 get max chance
+                const pptchance = response.forecasts[i].forecast[j].precipitation.chance;                             
+                // console.log(response.forecasts[i].forecast[j].precipitation)
+                console.log("chance=" + chance + " chance[" + i + "]=" + chance[i]);
+                if( pptchance > chance[i]){
+                                        
+                    chance[i] = pptchance; // if chance > 0 get max chance
                 } 
             }
             
