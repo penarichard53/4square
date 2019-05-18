@@ -20,7 +20,7 @@
 <script>
     const urlv2 = new URL(window.location)
     const paramsv2 = new URLSearchParams(urlv2.search)    
-    const uri = '/v2/agronomics/fields' + paramsv2.get("fieldId") + '/agronomicnorms'
+    const uri = '/v2/agronomics/fields/' + paramsv2.get("fieldId") + '/agronomicnorms'
     
     
     $.ajax({
