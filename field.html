@@ -32,7 +32,7 @@
 <script>
     const urlv2 = new URL(window.location)
     const paramsv2 = new URLSearchParams(urlv2.search)
-    const uri = '/v2/weather/fields/' + paramsv2.get("fieldId") + '/forecasts?units=usa&limit=3&offset=3'
+    const uri = '/v2/weather/fields/' + paramsv2.get("fieldId") + '/forecasts?units=usa&properties=temperature,precipitation&limit=7'
     var elem = document.createElement('a')
     elem.href = 'addCrop?fieldId=' + paramsv2.get("fieldId")
     elem.innerHTML = '<button>Add a crop to this field</button>'
@@ -47,9 +47,9 @@
         url: host + uri,
         type: "GET",
         beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
-        success: (response) => {
+        success: (response) => {            
             console.log(response.forecasts[0])  
-            for(var i = 0; i < 3;i++){
+            for(var i = 0; i < 7;i++){
                 console.log('date = ' + response.forecasts[i].date);
                 $('#weather').append(
                     '<li>'+ 'date = ' + response.forecasts[i].date
@@ -62,22 +62,29 @@
                     )
                 }
             }
+      
+            
         }
     })
     */
+    
 
     function parseWeather(response) {    
-        var chance = [];
+        var chance = [0,0,0,0,0,0,0]; // chance of precipitation
         var days = [];
+        
         for(i = 0; i < 7; i++){ // 7 days a week
             const day = response.forecasts[i].date
             console.log('date = ' + day);
             days.push(day)
-            for(var j = 0; j < 1; j++){ // 24 hours a day
-                const forecast = response.forecasts[i].forecast[j];
-                // console.log(forecast.precipitation)
-                chance.push(forecast.precipitation.chance)
+            for(var j = 0; j < 24; j++){ // 24 hours a day
+                const chance = response.forecasts[i].forecast[j].precipitation.chance;                             
+                console.log(response.forecasts[i].forecast[j].precipitation)
+                if( chance > chance[i]){
+                    chance[i] = chance; // if chance > 0 get max chance
+                } 
             }
+            
         }
         console.log(chance);        
         generateChart(chance, days);
@@ -85,8 +92,7 @@
     }
 
     $(function() { 
-        parseWeather(weatherResp);
-        
+        parseWeather(weatherResp);        
     })
 
     // chart.js
