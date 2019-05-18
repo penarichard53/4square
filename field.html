@@ -41,7 +41,7 @@
     document.getElementById('add-crop').appendChild(elem)
     document.getElementById('get-agronomic').appendChild(agro)
 
-    /*
+    
     $.ajax({
         url: host + uri,
         type: "GET",
@@ -68,8 +68,8 @@
             generateChart(chance, days);
         }
     })    
-    */
     
+    /*
     function parseWeather(response) {    
         var chance = new Array(0,0,0,0,0,0,0); // chance of precipitation
         var days = [];
@@ -95,9 +95,9 @@
 
     $(function() { 
         parseWeather(weatherResp);        
-    })
-    
-
+    })    
+    */
+   
     // chart.js
     function generateChart(data, labels) {        
         var ctx = document.getElementById("myChart").getContext("2d");
