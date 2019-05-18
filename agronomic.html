@@ -14,14 +14,12 @@
         <canvas id="myChart"></canvas>
     </div>
     <div id="agro-data"></div>
-
-
 </body>
+
 <script>
     const urlv2 = new URL(window.location)
     const paramsv2 = new URLSearchParams(urlv2.search)    
-    const uri = '/v2/agronomics/fields/' + paramsv2.get("fieldId") + '/agronomicnorms'
-    
+    const uri = '/v2/agronomics/fields/' + paramsv2.get("fieldId") + '/agronomicnorms' 
     
     $.ajax({
         url: host + uri,
@@ -102,8 +100,6 @@
 
         var myChart = new Chart(ctx, chartType);   
     }
-
-    
 
     $(function() {
         // parseFields(agronomicNorm)
