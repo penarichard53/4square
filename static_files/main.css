@@ -16,3 +16,13 @@ a.homepage {
 a.homepage:visited {
 	color: #901CB3;
 }
+
+#bg1 {
+	background-image: url('/fruits/home_background.jpg');
+	background-size: 100%;
+}
+
+#bg2 {
+	background-image: url('/fruits/blue_background.jpg');
+	background-size: 100px 100px;
+}

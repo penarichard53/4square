@@ -9,8 +9,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>  
 
     <style>
-        body {background: url('/fruits/field_background.jpg'); background-size: 100%; }
+        body {
+            height: 100%;
+
+            background-image: url('/fruits/blue_background.jpg'), url('/fruits/field_background.jpg');
+ 
+            background-position:  top left, center;
+            background-repeat: no-repeat, no-repeat;
+            background-size: 300px 300px, 100%;     
+        }  
+
     </style>
+
 </head>
 <body text = "green">    
     <form method="POST" id="fieldform">
