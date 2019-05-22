@@ -12,32 +12,31 @@
         body {
             height: 100%;
             background-image: url('/fruits/blue_background.jpg'), url('/fruits/field_background.jpg'); 
-            background-position:  top left, center;
+            background-position:  top, center;
             background-repeat: no-repeat, no-repeat;
             background-size: 300px 300px, 100%;     
-        }  
-
+        }         
     </style>
 
 </head>
 <body text = "green">    
-    <form method="POST" id="fieldform">
-        Field Id:<br>
-        <input type="text" name="fieldId" id="fieldId"required><br>
-        Name of Field: (optional)<br>
-        <input type="text" name="name" id="name"><br>
-        Farm Id:<br>
-        <input type="text" name="farmId" id="farmId" required><br>
-        Acres: (optional) <br>
-        <input type="text" name="acres" id="acres"><br>
-        Latitude: (decimal number)<br>
-        <input type="text" name="latitude" id="latitude" required><br>
-        Longitude: (decimal number)<br>
-        <input type="text" name="longitude" id="longitude" required><br>
-        <input type="Submit" value="Submit" >
-
-    </form>
-
+    <center>
+        <form method="POST" id="fieldform" >
+            Field Id:<br>
+            <input type="text" name="fieldId" id="fieldId"required><br>
+            Name of Field: (optional)<br>
+            <input type="text" name="name" id="name"><br>
+            Farm Id:<br>
+            <input type="text" name="farmId" id="farmId" required><br>
+            Acres: (optional) <br>
+            <input type="text" name="acres" id="acres"><br>
+            Latitude: (decimal number)<br>
+            <input type="text" name="latitude" id="latitude" required><br>
+            Longitude: (decimal number)<br>
+            <input type="text" name="longitude" id="longitude" required><br>
+            <input type="Submit" value="Submit" >
+        </form>
+    </center>
     
    
 </body>
