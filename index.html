@@ -59,10 +59,15 @@
         beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
         success: (o) => { // object o is the param
             for(var field of o['fields']){ // iterate through each field returned                
-                var elem = document.createElement('')
+                // console.log(field.name);
+                // console.log(field.id);
+                var well = document.createElement('div')
+                well.setAttribute("class", "well well-lg")
+                var elem = document.createElement('a')
                 elem.href = 'field?cropID=' + field.name + '&fieldId=' + field.id
                 elem.innerHTML = '<li>' + field.name + '</li>'
-                document.getElementById('fields').appendChild(elem)
+                well.appendChild(elem)
+                document.getElementById('fields').appendChild(well)
             }
         }
     })
