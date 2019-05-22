@@ -8,10 +8,22 @@
     <link href="main.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="config.js"></script>
-    
-</head>
 
+    <!-- navbar -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Farm 2 Fresh</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="addField">Add a new Field</a></li>            
+          </ul>
+        </div>
+      </nav>
+</head>
 
 <body>
     <p>Hello</p>
@@ -25,8 +37,6 @@
         <canvas id="myChart"></canvas>
     </div>
 </body>
-
-<!-- weather API -->
 
 <script>
     const urlv2 = new URL(window.location)
