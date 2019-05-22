@@ -7,34 +7,39 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="main.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>   
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>       
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="config.js"></script>
 
     <!-- navbar -->
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Farm 2 Fresh</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="addField">Add a new Field</a></li>            
-          </ul>
-        </div>
-      </nav>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <a class="navbar-brand" href="#">Farm2Fresh</a>            
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="addField">Add a Field</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#" id="curr-field"></a>
+            </li>            
+        </ul> 
+    </nav>
 </head>
 
 <body>
-    <p>Hello</p>
-    <div id="add-crop"></div>
-    <div id="get-agronomic"></div>
-    <h1  id="crop-name"></h1> 
-    <div id="crop-img"></div>
-    <div id="crop-facts"></div>
-    <div id="weather"></div>   
-    <div class="chart-container" style="position: relative; height:740px; width:780px">
-        <canvas id="myChart"></canvas>
+    <div class="row">
+        <div class="col-sm-4">
+            <a id="add-crop-btn"><button type="button" class="btn btn-outline-secondary">Add a crop to this field</button></a>
+            <div id="get-agronomic"></div>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="chart-container" style="position: relative; height:740px; width:780px">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
     </div>
 </body>
 
@@ -42,15 +47,14 @@
     const urlv2 = new URL(window.location)
     const paramsv2 = new URLSearchParams(urlv2.search)
     const uri = '/v2/weather/fields/' + paramsv2.get("fieldId") + '/forecasts?units=usa&properties=temperature,precipitation&limit=7'
-    var elem = document.createElement('a')
-    elem.href = 'addCrop?fieldId=' + paramsv2.get("fieldId")
-    elem.innerHTML = '<button>Add a crop to this field</button>'
+    
     var agro = document.createElement('a')
     agro.href = '/agronomic?fieldId=' + paramsv2.get("fieldId")
     agro.innerHTML = '<button>Check out historical agronomic data</button>'
-    document.getElementById('add-crop').appendChild(elem)
-    document.getElementById('get-agronomic').appendChild(agro)
 
+    document.getElementById('get-agronomic').appendChild(agro)
+    document.getElementById('curr-field').innerHTML = paramsv2.get("fieldId")
+    document.getElementById('add-crop-btn').setAttribute("href", "addCrop?fieldId=" + paramsv2.get("fieldId"))
     
     $.ajax({
         url: host + uri,
