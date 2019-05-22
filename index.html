@@ -7,72 +7,89 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">    
     <link href="main.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="config.js"></script>
 
     <style>
+      
         html {
             height: 100%;
-
-            background-image: url('/fruits/blue_background.jpg'), url('/fruits/home_background.jpg');
- 
+            background-image: url('/fruits/blue_background.jpg'), url('/fruits/home_background.jpg'); 
             background-position:  top left, center;
             background-repeat: no-repeat, no-repeat;
             background-size: 300px 300px, 100%;     
         }  
+        
+
 
     </style>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Farm 2 Fresh</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="addField">Add a new Field</a></li>            
+          </ul>
+        </div>
+      </nav>
 </head>
 
-<body>
-    <div class="navbar">
-        <img src= "logo/4SquareLogo.png" alt= "logo" class = "logo">
-        <nav>
-            <ul>
-                <li><a class="homepage" href="#">Home</a></li> 
-                <br>
-                <li><a class="homepage" href="addField">Add a new field</a></li>                                                
-            </ul>
-        </nav>
+<body style="background-image: url('/fruits/home_background.jpg')">
+    <div class="container" >
+        <div class="jumbotron">
+          <h1>Welcome to Farm2Fresh</h1>      
+          <p>Farm 2 Fresh will help you manage your farms, plantings, and much more. Select your farm below, or if you don't have any then create a farm! For every farm, you can 
+            checkout what the weather will be like in order to determine whether you need to water your planting, agronomic data regarding your crop. 
+          </p>
+        </div>
+        <div id="fields">        
+        </div>               
     </div>
-
-    <div class="modal-body" id="fields">        
-    </div>    
+    
 </body>
 
 <script>
     const uri = '/v2/fields'
-    
+    /*
     $.ajax({
         url: host + uri,
         type: "GET",
         beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
         success: (o) => { // object o is the param
             for(var field of o['fields']){ // iterate through each field returned                
-                var elem = document.createElement('a')
+                var elem = document.createElement('')
                 elem.href = 'field?cropID=' + field.name + '&fieldId=' + field.id
                 elem.innerHTML = '<li>' + field.name + '</li>'
                 document.getElementById('fields').appendChild(elem)
             }
         }
     })
+    */
     
-    /*
     function parseFields(o) { 
         
         for(var field of o['fields']){
             // console.log(field.name);
             // console.log(field.id);
+            var well = document.createElement('div')
+            well.setAttribute("class", "well well-lg")
             var elem = document.createElement('a')
             elem.href = 'crops?cropID=' + field.name + '&fieldId=' + field.id
-            elem.innerHTML = '<li>' + field.name + '</li>'
-            document.getElementById('fields').appendChild(elem)
+            elem.innerHTML = 
+              '<a href="crops?cropID="' + field.name + '&fieldId=' + field.id + '">' 
+                + '<li>' + field.name + '</li></a>'
+            well.appendChild(elem)
+            document.getElementById('fields').appendChild(well)
+            
         }
     }
 
     $(function() {
         parseFields(allCrops)
     })
-    */
+    
     
 </script>
 </html>
