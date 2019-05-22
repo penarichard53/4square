@@ -29,33 +29,47 @@
 </head>
 
 <body>
+    <h1 id='curr-field'>Hello</h1>
+    <br>
+    <br>
+    <p>These are the results of your area's Rainfall/Land last week, calculated by PPET. A rise in PPET indicates increase in water for your area. If near the threshold, then irrigation may not be necessary for that week.</p>
     <div class="row">
-        <div class="col-sm-4">
+        <!--<div class="col-sm-4">
             <a id="add-crop-btn"><button type="button" class="btn btn-outline-secondary">Add a crop to this field</button></a>
             <div id="get-agronomic"></div>
-        </div>
-
-        <div class="col-sm-8">
+        </div>-->
+        <div class="col-sm-4">
             <div class="chart-container" style="position: relative; height:740px; width:780px">
-                <canvas id="myChart"></canvas>
+                <canvas id="generateChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <p>This is your future rain forecast, calculated by your farm's location. If the chance of rain is greater than 50%, consider not irrigating your crop if PPET is also increasing.</p>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="chart-container" style="position: relative; height:740px; width:780px">
+                <canvas id="myChart"></canvas>            
             </div>
         </div>
     </div>
 </body>
 
 <script>
+
     const urlv2 = new URL(window.location)
     const paramsv2 = new URLSearchParams(urlv2.search)
     const uri = '/v2/weather/fields/' + paramsv2.get("fieldId") + '/forecasts?units=usa&properties=temperature,precipitation&limit=7'
+
+    const uri2 = '/v2/agronomics/fields/' + paramsv2.get("fieldId") + '/agronomicnorms' 
     
-    var agro = document.createElement('a')
+    /*var agro = document.createElement('a')
     agro.href = '/agronomic?fieldId=' + paramsv2.get("fieldId")
     agro.innerHTML = '<button>Check out historical agronomic data</button>'
 
-    document.getElementById('get-agronomic').appendChild(agro)
+    document.getElementById('get-agronomic').appendChild(agro)*/
     document.getElementById('curr-field').innerHTML = paramsv2.get("fieldId")
-    document.getElementById('add-crop-btn').setAttribute("href", "addCrop?fieldId=" + paramsv2.get("fieldId"))
-    
+    //document.getElementById('add-crop-btn').setAttribute("href", "addCrop?fieldId=" + paramsv2.get("fieldId"))
+
     $.ajax({
         url: host + uri,
         type: "GET",
@@ -63,10 +77,11 @@
         success: (response) => {            
             var chance = new Array(0,0,0,0,0,0,0); // chance of precipitation
             var days = [];
-            
+
             for(i = 0; i < 7; i++){ // 7 days a week
                 const day = response.forecasts[i].date
                 console.log('date = ' + day);
+                console.log("made it");
                 days.push(day)
                 for(var j = 0; j < 24; j++){ // 24 hours a day
                     const pptchance = response.forecasts[i].forecast[j].precipitation.chance;                             
@@ -80,9 +95,34 @@
             }
                 
             generateChart(chance, days);
-        }
-    })    
+        }//end of success ajax1
+    })//end of ajax1
+
+    //ajax2 for PPET
+   $.ajax({
+        url: host + uri2,
+        type: "GET",
+        beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
+        success: (response) => {    
+
+            var days = [];
+            var ppet = [];
+            var threshold = [];
+
+            for(var day of response["dailyNorms"]){
+                console.log(day); 
+                days.push(day.day);
+                ppet.push(day.ppet.average);
+                threshold.push(1);
+            }
+            //console.log("going out");
+            var dataset = new Array(ppet, threshold);
+            //console.log(dataset);
+            generateGraph(days, dataset);
+        }//end of success ajax2
+    })//end of ajax2
     
+
     /*
     function parseWeather(response) {    
         var chance = new Array(0,0,0,0,0,0,0); // chance of precipitation
@@ -129,12 +169,42 @@
             options: {
                 title: {
                     display: true,
-                    text: "Chance of rain for the next week"
+                    text: "Chance of Rain Next Week"
                 }
             }                
         };
 
-        var myChart = new Chart(ctx, chartType);   
+        var myChart = new Chart(ctx, chartType);
+    }
+
+    function generateGraph(days, data){
+        var ctx2 = document.getElementById("generateChart").getContext("2d");
+        var chartType = {        
+            type: 'line',            
+            data: {
+                labels: days,
+                datasets: [{
+                        data: data[0],
+                        label: "PPET",
+                        fill: false,
+                        borderColor: "#8e5ea2"      
+                    } ,{
+                        data: data[1],
+                        label: "Irrigation Threshold",
+                        fill: false,
+                        borderColor: "#FF0000"      
+                    } 
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Your Area's Rainfall/Land Last Week"
+                }
+            }                
+        };
+
+        var myChart2 = new Chart(ctx2, chartType);   
     }
 </script>
 </html
