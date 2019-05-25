@@ -48,15 +48,16 @@
 
 <script>
     const uri = '/v2/fields'
+    const urlv2 = new URL(window.location)
+    // access user by params.user
+    const params = new URLSearchParams(urlv2.search)
     
     $.ajax({
         url: host + uri,
         type: "GET",
         beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
         success: (o) => { // object o is the param
-            for(var field of o['fields']){ // iterate through each field returned                
-                // console.log(field.name);
-                // console.log(field.id);
+            for(var field of o['fields']){ // iterate through each field returned                                
                 var well = document.createElement('div')
                 well.setAttribute("class", "well well-lg")
                 var elem = document.createElement('a')
@@ -64,6 +65,7 @@
                 elem.innerHTML = '<li>' + field.name + '</li>'
                 well.appendChild(elem)
                 document.getElementById('fields').appendChild(well)
+                
             }
         }
     })
