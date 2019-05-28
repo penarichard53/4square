@@ -6,6 +6,7 @@
     <title>Add a Crop!</title>
     <link rel="stylesheet" href="tooltip.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <style>
         body {
@@ -18,6 +19,22 @@
             background-size: 750px 175px, 100%;     
         }  
     </style>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul id='navbar' class="navbar-nav">
+            <a class="navbar-brand" href="#">Farm2Fresh</a>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="addField">Add a Field</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#" id="curr-field"></a>
+            </li>
+        </ul>
+    </nav>
 </head>
 <body text = "green">
     <form method="POST">
@@ -72,6 +89,8 @@
 <script>
     const urlv3 = new URL(window.location)
     const paramsv3 = new URLSearchParams(urlv3.search)
+
+    document.getElementById('curr-field').innerHTML = paramsv3.get("fieldId")
 
     $(document).ready( () => {
         console.log(paramsv3);        

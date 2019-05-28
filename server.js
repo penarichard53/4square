@@ -1,4 +1,4 @@
-const TOKEN = 'GXpi94sEdyPZ7AAK8ivEvyrKWXCM'
+const TOKEN = 'X1D4kknVMEIYG7RbPCy9ii8a3zkR'
 const HOST = 'https://api.awhere.com'
 
 // init server framework
@@ -60,7 +60,6 @@ app.post('/addCrop:fieldId', (req,res) => {
     res.send("request complete")
 })
 
-
 app.get('/', (req,res) => { // home page
     res.sendFile(__dirname + '/' + 'index.html')
 })
@@ -98,11 +97,10 @@ app.post('/addField', (req,res) => {
         }
     }
     request(options, function(err,response,body){        
-        console.log(body);
-        // console.log(options)        
+        console.log(body);        
     })
 
-    res.send("request complete")
+    res.redirect(301, __dirname + "/")    
 })
 
 app.post('/', (req,res) => {

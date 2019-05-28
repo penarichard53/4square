@@ -13,7 +13,7 @@
 
     <!-- navbar -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <ul class="navbar-nav">
+        <ul id='navbar' class="navbar-nav">
             <a class="navbar-brand" href="#">Farm2Fresh</a>            
             <li class="nav-item">
               <a class="nav-link" href="/">Home</a>
@@ -29,9 +29,11 @@
 </head>
 
 <body>
+    <br>   
+    <div id="no-graphs"></div>
     <br>
-    <br>
-    <p>These are the results of your area's Rainfall/Land last week, calculated by PPET. A rise in PPET indicates increase in water for your area. If near the threshold, then irrigation may not be necessary for that week.</p>
+
+    <div id="ppet-text"></div>    
     <div class="row">
         <!--<div class="col-sm-4">
             <a id="add-crop-btn"><button type="button" class="btn btn-outline-secondary">Add a crop to this field</button></a>
@@ -43,7 +45,8 @@
             </div>
         </div>
     </div>
-    <p>This is your future rain forecast, calculated by your farm's location. If the chance of rain is greater than 50%, consider not irrigating your crop if PPET is also increasing.</p>
+
+    <div id="rain-text"></div>    
     <div class="row">
         <div class="col-sm-4">
             <div class="chart-container" style="position: relative; height:740px; width:780px">
@@ -94,7 +97,19 @@
             }
                 
             generateChart(chance, days);
-        }//end of success ajax1
+        }, // end of success ajax1
+        error: function(xhr, ajaxOptions, thrownError) { // no crops, add a addCrop button
+            const l = document.createElement('li');
+            const a = document.createElement('a');
+            a.setAttribute("href", "addCrop?fieldId=" + paramsv2.get("fieldId")); 
+            a.className = "nav-link";
+            a.innerText = "Add a Crop";            
+            l.className = "nav-item";
+            l.appendChild(a);
+            document.getElementById('navbar').appendChild(l);
+            document.getElementById('no-graphs').innerHTML = '<p>Begin by adding a crop. Select the link above to continue</p>';
+            
+        }
     })//end of ajax1
 
     //ajax2 for PPET
@@ -174,6 +189,7 @@
         };
 
         var myChart = new Chart(ctx, chartType);
+        document.getElementById('rain-text').innerHTML = `<p>This is your future rain forecast, calculated by your farm's location.If the chance of rain is greater than 50 %, consider not irrigating your crop if PPET is also increasing.</p>`;
     }
 
     function generateGraph(days, data){
@@ -203,7 +219,8 @@
             }                
         };
 
-        var myChart2 = new Chart(ctx2, chartType);   
+        var myChart2 = new Chart(ctx2, chartType);
+        document.getElementById('ppet-text').innerHTML = `<p>These are the results of your area's Rainfall/Land last week, calculated by PPET. A rise in PPET indicates increase in water for your area. If near the threshold, then irrigation may not be necessary for that week.</p>`;
     }
 </script>
 </html
