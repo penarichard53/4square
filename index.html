@@ -69,8 +69,7 @@
               buttonElem.setAttribute("id", field.id)
               well.appendChild(elem)
               well.appendChild(buttonElem)
-              document.getElementById('fields').appendChild(well)
-                
+              document.getElementById('fields').appendChild(well)                
             }
         }
     })
@@ -108,7 +107,8 @@
         type: "DELETE",
         beforeSend: (xhr) => { xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN) },
         success: (resp) => {
-          alert("Successfully deleted!");          
+          alert("Successfully deleted!");
+          window.location.reload(true);
         }
       }) 
     }
