@@ -43,7 +43,6 @@
         <div id="fields">        
         </div>               
     </div>
-    
 </body>
 
 <script>
@@ -51,7 +50,7 @@
     const urlv2 = new URL(window.location)
     // access user by params.user
     const params = new URLSearchParams(urlv2.search)
-    
+    /*
     $.ajax({
         url: host + uri,
         type: "GET",
@@ -69,8 +68,8 @@
             }
         }
     })
+    */
     
-    /*
     function parseFields(o) { 
         
         for(var field of o['fields']){
@@ -92,7 +91,9 @@
     $(function() {
         parseFields(allCrops)
     })
-    */
-    
+
+    function deleteField(elem) {
+      console.log(elem)
+    }
 </script>
 </html>
