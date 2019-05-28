@@ -24,8 +24,8 @@ app.get('/addCrop', (req,res) => {
     res.sendFile(__dirname + '/' + 'addCrop.html')
 })
 
-app.post('/addCrop:fieldId', (req,res) => {    
-    const uri = '/v2/agronomics/fields/' + req.params.fieldId + '/plantings'
+app.post('/addCrop', (req,res) => {    
+    const uri = '/v2/agronomics/fields/' + req.param('fieldId') + '/plantings'
     
     const options = {
         url: HOST + uri,
