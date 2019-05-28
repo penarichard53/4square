@@ -107,7 +107,7 @@
         type: "DELETE",
         beforeSend: (xhr) => { xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN) },
         success: (resp) => {
-          alert("Successfully deleted!");
+          alert("Successfully deleted!");          
           window.location.reload(true);
         }
       }) 
