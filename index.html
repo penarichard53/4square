@@ -43,6 +43,7 @@
         <div id="fields">        
         </div>               
     </div>
+    <button onclick="deleteField(this)">Click me</button>
 </body>
 
 <script>
@@ -50,50 +51,67 @@
     const urlv2 = new URL(window.location)
     // access user by params.user
     const params = new URLSearchParams(urlv2.search)
-    /*
+    
     $.ajax({
         url: host + uri,
         type: "GET",
         beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
         success: (o) => { // object o is the param
             for(var field of o['fields']){ // iterate through each field returned                                
-                var well = document.createElement('div')
-                well.setAttribute("class", "well well-lg")
-                var elem = document.createElement('a')
-                elem.href = 'field?cropID=' + field.name + '&fieldId=' + field.id
-                elem.innerHTML = '<li>' + field.name + '</li>'
-                well.appendChild(elem)
-                document.getElementById('fields').appendChild(well)
+              var well = document.createElement('div')
+              well.setAttribute("class", "well well-lg")
+              var elem = document.createElement('a')
+              elem.href = 'field?cropID=' + field.name + '&fieldId=' + field.id
+              elem.innerHTML = '<p>' + field.name + '<p>'
+              var buttonElem = document.createElement("button")
+              buttonElem.innerText = "Delete this Field"
+              buttonElem.setAttribute("class", "pull-right")
+              buttonElem.setAttribute("onclick", "deleteField(this)")
+              buttonElem.setAttribute("id", field.id)
+              well.appendChild(elem)
+              well.appendChild(buttonElem)
+              document.getElementById('fields').appendChild(well)
                 
             }
         }
     })
-    */
     
+    /*
     function parseFields(o) { 
         
         for(var field of o['fields']){
-            // console.log(field.name);
-            // console.log(field.id);
-            var well = document.createElement('div')
-            well.setAttribute("class", "well well-lg")
-            var elem = document.createElement('a')
-            elem.href = 'crops?cropID=' + field.name + '&fieldId=' + field.id
-            elem.innerHTML = 
-              '<a href="crops?cropID="' + field.name + '&fieldId=' + field.id + '">' 
-                + '<li>' + field.name + '</li></a>'
-            well.appendChild(elem)
-            document.getElementById('fields').appendChild(well)
-            
+          var well = document.createElement('div')
+          well.setAttribute("class", "well well-lg")
+          var elem = document.createElement('a')
+          elem.href = 'field?cropID=' + field.name + '&fieldId=' + field.id
+          elem.innerHTML = '<p>' + field.name + '<p>'
+          var buttonElem = document.createElement("button")
+          buttonElem.innerText = "Delete this Field"
+          buttonElem.setAttribute("class", "pull-right")
+          buttonElem.setAttribute("onclick", "deleteField(this)")
+          buttonElem.setAttribute("id", field.id)
+          well.appendChild(elem)
+          well.appendChild(buttonElem)
+          document.getElementById('fields').appendChild(well)         
         }
     }
 
     $(function() {
         parseFields(allCrops)
     })
+    */
 
     function deleteField(elem) {
-      console.log(elem)
+      console.log(elem);      
+      const uri = '/v2/fields/' + elem.getAttribute("id")
+      $.ajax({
+        url: host + uri,
+        type: "DELETE",
+        beforeSend: (xhr) => { xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN) },
+        success: (resp) => {
+          alert("Successfully deleted!");          
+        }
+      }) 
     }
 </script>
 </html>
