@@ -60,17 +60,19 @@
 
     const urlv2 = new URL(window.location)
     const paramsv2 = new URLSearchParams(urlv2.search)
-    const uri = '/v2/weather/fields/' + paramsv2.get("fieldId") + '/forecasts?units=usa&properties=temperature,precipitation&limit=7'
 
+    const uri = '/v2/weather/fields/' + paramsv2.get("fieldId") + '/forecasts?units=usa&properties=temperature,precipitation&limit=7'
     const uri2 = '/v2/agronomics/fields/' + paramsv2.get("fieldId") + '/agronomicnorms' 
     
-    /*var agro = document.createElement('a')
-    agro.href = '/agronomic?fieldId=' + paramsv2.get("fieldId")
-    agro.innerHTML = '<button>Check out historical agronomic data</button>'
+    /*
+        var agro = document.createElement('a')
+        agro.href = '/agronomic?fieldId=' + paramsv2.get("fieldId")
+        agro.innerHTML = '<button>Check out historical agronomic data</button>'
+        document.getElementById('get-agronomic').appendChild(agro)
+    */
 
-    document.getElementById('get-agronomic').appendChild(agro)*/
-    document.getElementById('curr-field').innerHTML = paramsv2.get("fieldId")
-    //document.getElementById('add-crop-btn').setAttribute("href", "addCrop?fieldId=" + paramsv2.get("fieldId"))
+    document.getElementById('curr-field').innerHTML = paramsv2.get("fieldId") // display field name in navbar
+    // document.getElementById('add-crop-btn').setAttribute("href", "addCrop?fieldId=" + paramsv2.get("fieldId"))
 
     $.ajax({
         url: host + uri,
@@ -110,10 +112,10 @@
             document.getElementById('no-graphs').innerHTML = '<p>Begin by adding a crop. Select the link above to continue</p>';
             
         }
-    })//end of ajax1
+    })
 
-    //ajax2 for PPET
-   $.ajax({
+    // ajax2 for PPET
+    $.ajax({
         url: host + uri2,
         type: "GET",
         beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
@@ -124,17 +126,20 @@
             var threshold = [];
 
             for(var day of response["dailyNorms"]){
-                console.log(day); 
+                // console.log(day); 
                 days.push(day.day);
                 ppet.push(day.ppet.average);
                 threshold.push(1);
             }
-            //console.log("going out");
+            // console.log("going out");
             var dataset = new Array(ppet, threshold);
-            //console.log(dataset);
+            // console.log(dataset);
             generateGraph(days, dataset);
-        }//end of success ajax2
-    })//end of ajax2
+        }, // end of success ajax2
+        error: function(xhr) {
+            console.log("No charts could be generated")
+        }
+    }) // end of ajax2
     
 
     /*
@@ -203,7 +208,7 @@
                         label: "PPET",
                         fill: false,
                         borderColor: "#8e5ea2"      
-                    } ,{
+                    }, {
                         data: data[1],
                         label: "Irrigation Threshold",
                         fill: false,
