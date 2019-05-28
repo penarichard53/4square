@@ -100,7 +100,7 @@ app.post('/addField', (req,res) => {
         console.log(body);        
     })
 
-    res.redirect(301, __dirname + "/")    
+    res.sendFile(__dirname + "/" + "index.html")    
 })
 
 app.post('/', (req,res) => {
