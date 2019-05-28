@@ -57,7 +57,8 @@ app.post('/addCrop', (req,res) => {
         // console.log(options)        
     })
 
-    res.send("request complete")
+    res.redirect('/')
+
 })
 
 app.get('/', (req,res) => { // home page
