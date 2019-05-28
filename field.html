@@ -65,13 +65,6 @@
     const uri2 = '/v2/agronomics/fields/' + paramsv2.get("fieldId") + '/agronomicnorms' 
     var errFound = false;
 
-    /*
-        var agro = document.createElement('a')
-        agro.href = '/agronomic?fieldId=' + paramsv2.get("fieldId")
-        agro.innerHTML = '<button>Check out historical agronomic data</button>'
-        document.getElementById('get-agronomic').appendChild(agro)
-    */
-
     document.getElementById('curr-field').innerHTML = paramsv2.get("fieldId") // display field name in navbar
     // document.getElementById('add-crop-btn').setAttribute("href", "addCrop?fieldId=" + paramsv2.get("fieldId"))
 
