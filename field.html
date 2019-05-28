@@ -63,7 +63,8 @@
 
     const uri = '/v2/weather/fields/' + paramsv2.get("fieldId") + '/forecasts?units=usa&properties=temperature,precipitation&limit=7'
     const uri2 = '/v2/agronomics/fields/' + paramsv2.get("fieldId") + '/agronomicnorms' 
-    
+    var errFound = false;
+
     /*
         var agro = document.createElement('a')
         agro.href = '/agronomic?fieldId=' + paramsv2.get("fieldId")
@@ -110,7 +111,7 @@
             l.appendChild(a);
             document.getElementById('navbar').appendChild(l);
             document.getElementById('no-graphs').innerHTML = '<p>Begin by adding a crop. Select the link above to continue</p>';
-            
+            errFound = true;
         }
     })
 
@@ -137,7 +138,18 @@
             generateGraph(days, dataset);
         }, // end of success ajax2
         error: function(xhr) {
-            console.log("No charts could be generated")
+            if(!errFound) {
+                const l = document.createElement('li');
+                const a = document.createElement('a');
+                a.setAttribute("href", "addCrop?fieldId=" + paramsv2.get("fieldId"));
+                a.className = "nav-link";
+                a.innerText = "Add a Crop";
+                l.className = "nav-item";
+                l.appendChild(a);
+                document.getElementById('navbar').appendChild(l);
+                document.getElementById('no-graphs').innerHTML = '<p>Begin by adding a crop. Select the link above to continue</p>';
+                errFound = true;
+            }
         }
     }) // end of ajax2
     
