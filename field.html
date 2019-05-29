@@ -11,6 +11,27 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="config.js"></script>
 
+    <script type="text/javascript">
+        var oatfield = document.createElement('div');
+        oatfield.innerHTML = '<p> Hello from oat fields </p>';
+        const urlv = new URL(window.location);
+        const paramsv = new URLSearchParams(urlv.search);
+
+        function info() {
+            var facts = document.getElementById('crop-info');
+            //var information = { text: 'Hello'};
+            //document.write(information.text);
+
+            var name = paramsv.get("fieldId");
+            document.getElementById("cropName").innerHTML = name;
+            //const crop = paramsv2;
+            switch(name){
+                case "oat-field-1":
+                    console.log("successful")
+                    facts.appendChild(oatfield);
+            }
+        }
+    </script>
     <!-- navbar -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul id='navbar' class="navbar-nav">
@@ -31,37 +52,36 @@
 <body onload="getName()">
 
     <br>   
-    <div id="no-graphs"></div>
+    <div id="no-graphs"></div> <!-- Add crop if no crop -->
     <br>   
     <h3> <center><span id="cropName"></span> Analysis</center></h3>
     <br>      
     <br>      
     <br>  
-    <h4> <center>Figure 1: Rainfall/Land</center></h4>
-    <br>     
-    <div class="row">
-        <!--<div class="col-sm-4">
-            <a id="add-crop-btn"><button type="button" class="btn btn-outline-secondary">Add a crop to this field</button></a>
-            <div id="get-agronomic"></div>
-        </div>-->
+    <h4> <center>Figure 1: Rainfall/Land</center></h4>     
+    <div class="row"> <!-- PPET chart -->
         <div class="col-sm-4">
             <div class="chart-container" style="position: relative; left: 270px; height:400px; width:780px">
                 <canvas id="generateChart"></canvas>
             </div>
         </div>
     </div>
-    <div id="ppet-text"></div> 
+    <div id="ppet-text"></div>  <!-- PPET text -->
     <br>
     <br>
     <h4> <center>Figure 2: Weather Forecast</center></h4>
-    <div class="row">
+    <div class="row"> <!-- weather forecast chart -->
         <div class="col-sm-4">
             <div class="chart-container" style="position: relative; left: 270px; height:440px; width:780px">
                 <canvas id="myChart"></canvas>            
             </div>
         </div>
     </div>
-    <div id="rain-text"></div> 
+    <div id="rain-text"></div> <!-- weather forecast text -->
+    <script type="text/javascript"> //access method crop info above in script
+        info();
+    </script>
+    <div id="crop-info" type="text/javascript"></div> <!-- add crop info -->
 </body>
 
 <script>
