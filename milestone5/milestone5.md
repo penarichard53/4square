@@ -15,6 +15,13 @@ Once they have added a crop to their field, the user will be able to see weather
 
 After all of the users fields and crops are added, they can monitor their crops with help from the graphs provided. They also have the ability to delete a field in case certain fields need to be changed/removed. The user is satisfied after our app provides them an easy way to monitor their crops as well as inform them about their specific crops needs.  
 
+### How UI Has Improved
+---
+
+The UI for our app has imprived in a few ways since the last milestone. The first major change can be seen from the homepage. We have implemented a delete field function. This allows the user to delete a field from their farm. Upon clicking the "delete field" button, the page will be refreshed and that field will no longer be available for the user. 
+
+Furthermore, there has been updates in the styling of the add field tab. Next we now have two graphs shown to the user upon clicking on a field from the homepage. The first graph is the same from the previous milestone. The second graph shows expected rainfall for the upcoming week. The last change that can be seen is with our addCrop page. This page has updated styling which makes it much easier to use and view.  
+
 ### Farm2Fresh
 --
 
