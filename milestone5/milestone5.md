@@ -22,14 +22,19 @@ After all of the users fields and crops are added, they can monitor their crops 
 ### UI Webpages
 ---
 
-### Homepage
-![Homepage.jpeg](Homepage.png)
+### Homepage With Delete Field
+![HomepageDelete.jpeg](HomepageDelete.png)
 
 ### Adding a Field
-![addField.jpeg](addField.png)
+![addField1.jpeg](addField1.png)
 
-### Your Crop
-![addCrop.jpeg](addCrop.png)
+### Your Crop Data
+![cropData1.jpeg](cropData1.png)
+![cropData2.jpeg](cropData2.png)
+
+### Add Crop
+![addCrop1.jpeg](addCrop1.png)
+
 
 
 
