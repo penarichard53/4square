@@ -49,4 +49,12 @@ Furthermore, there has been updates in the styling of the add field tab. Next we
 ![weatherData1.jpeg](weatherData1.png)
 ![weatherData2.jpeg](weatherData2.png)
 
+### How Data Visualizations Implemented
+---
 
+
+
+
+
+### Ambitious Data Display Ideas
+---
