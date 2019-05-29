@@ -51,10 +51,8 @@ Furthermore, there has been updates in the styling of the add field tab. Next we
 
 ### How Data Visualizations Implemented
 ---
-
-
-
-
+Our data is being visualized through field.html. It creates an ajax call to aWhere.com for weather forecasts and previous water/land % based on the farmer's location. The data was shown using chart.js to display a line graph and displays data based on the actual day. The farmer can use them to help determine whether to irrigate that specific crop or not in the upcoming days.
 
 ### Ambitious Data Display Ideas
 ---
+Early on there were a lot of other services we were providing to help the farmer. For example, we wanted to give them a recent news section and a complete weather forecast. We also wanted to direct this specifically for beginning farmers, so we had a FAQ section with basics about how set up the farm, which crops were good in specific climates, and how to access markets to sell produce. Lastly, we had also planned to have more predictors for the crops like when the harvest. Many of these became restrained based on member time-constraints and what global dataset we were able to access.
