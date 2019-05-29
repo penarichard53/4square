@@ -108,55 +108,60 @@
         </ul>
     </nav>
 </head>
+
 <body text = "green">
     
-    <form method="POST">
-        <input type="text" name="fieldId" id="input-fieldId" readonly><br>
-        Crop:       
-        <select name="crop" required>
-            <option value="barley-generic">Barley</option>
-            <option value="canola-generic">Canola</option>            
-            <option value="cotton-2200-gdd">Cotton</option>
-            <option value="oat-generic">Oats</option>
-            <option value="sugarbeet-generic">Sugarbeet</option>
-            <option value="sunflower-generic">Sunflower</option>            
-        </select><br>
+    <form class="form-style-9" method="POST">
+        <ul>
+            <li><input class="field-style field-split" type="text" name="fieldId" id="input-fieldId" readonly></li>
+            <li>Crop: 
+                <select class="field-style field-split align-right" name="crop" required>                    
+                    <option value="barley-generic">Barley</option>
+                    <option value="canola-generic">Canola</option>            
+                    <option value="cotton-2200-gdd">Cotton</option>
+                    <option value="oat-generic">Oats</option>
+                    <option value="sugarbeet-generic">Sugarbeet</option>
+                    <option value="sunflower-generic">Sunflower</option>            
+                </select>
+            </li>
+            <li>
+                Planting Date:
+                <div class="tooltip">(details)
+                    <span class="tooltiptext">The date the crop was planted in the field.</span>
+                </div>
+                <input class="field-style field-split align-right" type="text" name="plantingDate" placeholder="YYYY-MM-DD" required><br>
+            </li>
+            <li>
+                <input class="field-style field-split align-left" type="text" name="projectedYieldAmount" placeholder="Projected Yield Amount"required>                                
+                <input class="field-style field-split align-right" type="text" name="projectedYieldUnits" placeholder="Projected Yield Units" required> 
+                <div class="tooltip">(details)
+                    <span class="tooltiptext">The projected yield can be any amount and any units (bushels, boxes, etc). This is an optional set of fields, but if one is set the other must be as well.</span>
+                </div><br>
+            </li>
+            <li>
+                Projected Harvest Date:
+                <input class="field-style field-split align-right" type="text" name="projectedHarvestDate" placeholder="YYYY-MM-DD" required>
+                <div class="tooltip">(details)
+                    <span class="tooltiptext">The projected harvest date at the start of the season.</span>
+                </div>
+            </li>
+            <li>                
+                <input class="field-style field-split align-left" type="text" name="actualYieldAmount" placeholder="Yield Amount" required>                
+                <input class="field-style field-split align-right" type="text" name="actualYieldUnits" placeholder="Yield Units" required>
+                <div class="tooltip">(details)
+                    <span class="tooltiptext">The actual yield can be any amount and any units (bushels, boxes, etc). This is an optional set of fields, but if one is set the other must be as well.</span>
+                </div>
+            </li>
+            <li>
+                Harvest Date:
+                <input class="field-style field-split align-right" type="text" name="harvestDate" placeholder="YYYY-MM-DD" required>
+                <div class="tooltip">(details)
+                    <span class="tooltiptext">The actual harvest date at the end of the season.</span>
+                </div>
+            </li>
 
-        Planting Date: 
-        <div class="tooltip">(details)
-            <span class="tooltiptext">The date the crop was planted in the field.</span>
-        </div>
-        <input type="text" name="plantingDate" placeholder="YYYY-MM-DD" required><br>
-
-        Projected Yield Amount: 
-        <input type="text" name="projectedYieldAmount" required>
-        Projected Yield Units:
-        <input type="text" name="projectedYieldUnits" required> 
-        <div class="tooltip">(details)
-            <span class="tooltiptext">The projected yield can be any amount and any units (bushels, boxes, etc). This is an optional set of fields, but if one is set the other must be as well.</span>
-        </div><br>
-
-        Projected Harvest Date:
-        <input type="text" name="projectedHarvestDate" placeholder="YYYY-MM-DD" required>
-        <div class="tooltip">(details)
-            <span class="tooltiptext">The projected harvest date at the start of the season.</span>
-        </div><br>
-
-        Yield Amount:
-        <input type="text" name="actualYieldAmount" required>
-        Yield Units:
-        <input type="text" name="actualYieldUnits" required>
-        <div class="tooltip">(details)
-            <span class="tooltiptext">The actual yield can be any amount and any units (bushels, boxes, etc). This is an optional set of fields, but if one is set the other must be as well.</span>
-        </div><br>
-
-        Harvest Date:
-        <input type="text" name="harvestDate" placeholder="YYYY-MM-DD" required>
-        <div class="tooltip">(details)
-            <span class="tooltiptext">The actual harvest date at the end of the season.</span>
-        </div><br>
-
-        <input type="Submit" value="Submit">
+            <input type="Submit" value="Submit">
+        </ul>
     </form>
 </body>
 <script>

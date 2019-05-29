@@ -71,7 +71,7 @@
     $.ajax({
         url: host + uri,
         type: "GET",
-        beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
+        beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},        
         success: (response) => {            
             var chance = new Array(0,0,0,0,0,0,0); // chance of precipitation
             var days = [];
