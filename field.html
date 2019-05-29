@@ -28,32 +28,40 @@
     </nav>
 </head>
 
-<body>
+<body onload="getName()">
+
     <br>   
     <div id="no-graphs"></div>
-    <br>
-
-    <div id="ppet-text"></div>    
+    <br>   
+    <h3><span id="cropName"></span> Analysis</h3>
+    <br>      
+    <br>      
+    <br>  
+    <h4> Figure 1: Rainfall/Land</h4>
+    <br>     
     <div class="row">
         <!--<div class="col-sm-4">
             <a id="add-crop-btn"><button type="button" class="btn btn-outline-secondary">Add a crop to this field</button></a>
             <div id="get-agronomic"></div>
         </div>-->
         <div class="col-sm-4">
-            <div class="chart-container" style="position: relative; height:740px; width:780px">
+            <div class="chart-container" style="position: relative; height:440px; width:780px">
                 <canvas id="generateChart"></canvas>
             </div>
         </div>
     </div>
-
-    <div id="rain-text"></div>    
+    <div id="ppet-text"></div> 
+    <br>
+    <br>
+    <h4> Figure 2: Weather Forecast</h4>
     <div class="row">
         <div class="col-sm-4">
-            <div class="chart-container" style="position: relative; height:740px; width:780px">
+            <div class="chart-container" style="position: relative; height:440px; width:780px">
                 <canvas id="myChart"></canvas>            
             </div>
         </div>
     </div>
+    <div id="rain-text"></div> 
 </body>
 
 <script>
@@ -67,6 +75,12 @@
 
     document.getElementById('curr-field').innerHTML = paramsv2.get("fieldId") // display field name in navbar
     // document.getElementById('add-crop-btn').setAttribute("href", "addCrop?fieldId=" + paramsv2.get("fieldId"))
+
+    function getName() {
+
+        var name = paramsv2.get("fieldId");
+        document.getElementById("cropName").innerHTML = name;
+    }
 
     $.ajax({
         url: host + uri,
