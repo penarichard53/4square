@@ -1,4 +1,4 @@
-const TOKEN = 'CDG70Q60g8iiKJ10mEcEGLaHAhI0'
+const TOKEN = 'qyOWVZihNRe2A9qBCGZuUeE5wGW9'
 const HOST = 'https://api.awhere.com'
 
 // init server framework
@@ -24,6 +24,9 @@ app.get('/addCrop', (req,res) => {
     res.sendFile(__dirname + '/' + 'addCrop.html')
 })
 
+/**
+ * unable to post 'Content-Type: application/json' via ajax inside browser, created endpoint on express API to make the request for me
+ */
 app.post('/addCrop', (req,res) => {    
     const uri = '/v2/agronomics/fields/' + req.param('fieldId') + '/plantings'
     
