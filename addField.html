@@ -10,14 +10,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <style type="text/css">
+    
         body {
             height: 100%;
             background-image:  url('/fruits/field_background.jpg'); 
             background-position:  center;
             background-repeat: no-repeat;
             background-size: 100%;     
-        }  
-        
+        }      
+
+        #map {
+            height: 500px;
+            width: 500px;
+        }
         .form-style-9{
             max-width: 450px;
             background: #FAFAFA;
@@ -122,8 +127,44 @@
             </li>
         </ul>
         </form>
+        <button onclick="getLocation()">Get My Location!</button>
+        <div id="map"></div>
     </center>    
    
 </body>
+
+<script>
+    var long; // decimal
+    var lat;  // decimal
+    var latitude  = document.getElementById("latitude");  // input form
+    var longitude = document.getElementById("longitude"); // input form
+    
+    function initMap() {        
+        // The location of Uluru
+        var uluru = { lat: -25.344, lng: 131.036 };
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map'), { zoom: 6, center: uluru });
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({ position: uluru, map: map });
+    }    
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            alert("Geolocation is not supported by this browser.")            
+        }
+    }
+
+    function showPosition(position) {
+        console.log(position);        
+        latitude.value = position.coords.latitude;
+        longitude.value = position.coords.longitude;            
+    }
+
+</script>
+<script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAs38fY7eoS7qdia9yj6r8hXCAuyaLvuck&callback=initMap"
+async defer></script>
+
 
 </html>
