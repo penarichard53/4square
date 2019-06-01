@@ -158,7 +158,10 @@
             url: host + uri,
             type: "GET",
             success: (response) => {                
-                console.log(response);                
+                if (response.status.includes("ZERO_RESULTS")) {
+                    alert("Could not verify the address, please try again");
+                    return;
+                }
                 // console.log(response.results[0]['geometry']['location'].lat);
                 // console.log(response.results[0]['geometry']['location'].lng);
                 displayPosition(response.results[0]['geometry']['location'].lng, response.results[0]['geometry']['location'].lat)
