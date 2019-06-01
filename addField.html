@@ -111,9 +111,10 @@
     <center>
         <form class="form-style-9" method="POST" id="fieldform" >            
         <ul>  
-            <p>Enter an address to generate longitude and latitude or click "Get My Location" </p>
+            <p>Enter an address to generate longitude and latitude or click "Get My Location"</p>
+            <button onclick="getLongLat(this)">Get coordinates!</button>
             <li>
-                <input class="field-style field-split">
+                <input class="field-style field-split" id="address">
             </li>
             <li>
                 <input class="field-style field-split align-left"  type="text" name="fieldId" id="fieldId" required placeholder="Field Id">
@@ -143,18 +144,9 @@
 <script>
     var long; // decimal
     var lat;  // decimal
-    var latitude  = document.getElementById("latitude");  // input form
-    var longitude = document.getElementById("longitude"); // input form
+    var latitudeElem  = document.getElementById("latitude");  // input form
+    var longitudeElem = document.getElementById("longitude"); // input form
     
-    function initMap() {        
-        // The location of Uluru
-        var uluru = { lat: -25.344, lng: 131.036 };
-        // The map, centered at Uluru
-        var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 6, center: uluru });
-        // The marker, positioned at Uluru
-        var marker = new google.maps.Marker({ position: uluru, map: map });
-    }    
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -163,15 +155,28 @@
         }
     }
 
-    function showPosition(position) {
-        console.log(position);        
-        latitude.value = position.coords.latitude;
-        longitude.value = position.coords.longitude;            
+    function getLongLat(elem) {        
+        const host = "https://maps.googleapis.com"
+        const uri = "/maps/api/geocode/json?address=" + $('#address').val() + "&key=" + GOOGLE_TOKEN
+        console.log(host + uri);        
+        
+        
+        $.ajax({
+            url: host + uri,
+            type: "GET",
+            success: (response) => {                
+                // console.log(response.results[0]['geometry']['location'].lat);
+                // console.log(response.results[0]['geometry']['location'].lng);
+                
+            },
+            error: (resp) => {
+                console.log(resp);                
+            }
+        })
+
     }
+    
 
 </script>
-<script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAs38fY7eoS7qdia9yj6r8hXCAuyaLvuck&callback=initMap"
-async defer></script>
-
 
 </html>
