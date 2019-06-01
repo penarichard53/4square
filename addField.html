@@ -106,10 +106,15 @@
     </nav>
 </head>
 
-<body text = "green">    
+<body text = "green">
+    
     <center>
-        <form class="form-style-9" method="POST" id="fieldform" >
-        <ul>
+        <form class="form-style-9" method="POST" id="fieldform" >            
+        <ul>  
+            <p>Enter an address to generate longitude and latitude or click "Get My Location" </p>
+            <li>
+                <input class="field-style field-split">
+            </li>
             <li>
                 <input class="field-style field-split align-left"  type="text" name="fieldId" id="fieldId" required placeholder="Field Id">
                 <input class="field-style field-split align-right" type="text" name="name" id="name" placeholder="Name of Field (optional)">
@@ -122,13 +127,15 @@
                 <input class="field-style field-split align-left"  type="text" name="latitude" id="latitude" required placeholder="Latitude (decimal)">
                 <input class="field-style field-split align-right" type="text" name="longitude" id="longitude" required placeholder="Longitude (decimal)">
             </li>
-            <li>
+
+            <li>                
                 <input type="Submit" value="Submit">
             </li>
+
         </ul>
         </form>
-        <button onclick="getLocation()">Get My Location!</button>
-        <div id="map"></div>
+        <button class="btn btn-primary btn-lg" onclick="getLocation()">Get My Location!</button>
+        
     </center>    
    
 </body>
