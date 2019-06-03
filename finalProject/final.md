@@ -20,7 +20,7 @@ COGS 121 Project
 	
 * Christian Lay-Geng
 
-	* Led brainstorming session for project ideas
+	* Led brainstorming session, emailed farmers for needfinding
 	* Understood agronomics and formatted the charts on field.html
 
 * Brandon Lien
