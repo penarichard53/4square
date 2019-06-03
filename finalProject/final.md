@@ -24,8 +24,8 @@ I wrote the structure of the application, including functionality and API calls.
 
 #### Brandon Lien
 
-*
-*
+* Did most of the styling of the app. Selected and formatted the backgrounds we use as well as kept everything centered. Chose images to use in
+* the early stages of the app and made sure there were no watermarks.
 
 
 
