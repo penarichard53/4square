@@ -8,11 +8,11 @@ COGS 121 Project
 ### Team Members & Contributions
 ---
 
-* Richard Pena
+#### Richard Pena
 I wrote the structure of the application, including functionality and API calls. I wrote the NodeJS + Express server that would handle all internal and external AJAX requests. Any call written to the aWhere API that we used was written by me. I generated the template to be used with Chart.js that Christian took advantage of. Additionally, I created all forms that were used to interact with the API. I demonstrated to my team how to use POSTMAN with our API so they could develop locally, and allowed user selected data to be passed around the app via query string or in the body of every request.
 	
 
-* Sadeem Khan
+#### Sadeem Khan
 	
 	*
 	*
