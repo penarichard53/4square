@@ -47,4 +47,4 @@ https://docs.google.com/presentation/d/1if3NyegbzW7-P_4PsNwX8lw-0_O_n9rXdrs2ZeCI
 ### Link to Demo Video
 ---
 
-link to your demo video that is publicly viewable
+https://www.youtube.com/watch?v=ZPJOUBXX5zE&feature=youtu.be
