@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<!--
+    addField.html 
+    The purpose of this page is to allow the user to add a field eto the aWhere API. 
+    This page is accessible from any part of the app because a field is the root of all information. 
+    The form can either generate coordinates from your current location or a provided address, additionally,
+    all fields are required. On form submit, the server makes a POST request to the API due to the security
+    browsers impose amongst Cross Origin Requests
+
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -137,12 +147,12 @@
 </body>
 
 <script>
-    var long; // decimal
-    var lat;  // decimal
-    var latitude  = document.getElementById("latitude");  // input form
-    var longitude = document.getElementById("longitude"); // input form
+    var long; 
+    var lat;  
+    var latitude  = document.getElementById("latitude");  
+    var longitude = document.getElementById("longitude"); 
     
-    function getLocation() {
+    function getLocation() { // get current location
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
@@ -150,34 +160,36 @@
         }
     }
 
-    function getLongLat(elem) {        
+    function getLongLat(elem) { // get location from address       
         const host = "https://maps.googleapis.com"
         const uri = "/maps/api/geocode/json?address=" + $('#address').val() + "&key=" + GOOGLE_TOKEN                
         
-        $.ajax({
+        $.ajax({ // ajax call to Geolocation API provided by Google
             url: host + uri,
             type: "GET",
             success: (response) => {                
-                if (response.status.includes("ZERO_RESULTS")) {
+                if (response.status.includes("ZERO_RESULTS")) { // invalid address
                     alert("Could not verify the address, please try again");
                     return;
-                }
-                // console.log(response.results[0]['geometry']['location'].lat);
-                // console.log(response.results[0]['geometry']['location'].lng);
+                }                
                 displayPosition(response.results[0]['geometry']['location'].lng, response.results[0]['geometry']['location'].lat)
             },
             error: (resp) => {
-                alert("Could not verify the address, please try again");
+                alert("Could not verify the address, please try again"); // invalid address
             }
         })
     }
 
+    /**
+     * The following functions display the coordinates in the input boxes based on the method of coordinate retrieval
+     * 
+     */
     function showPosition(position) {
         latitude.value = position.coords.latitude;
         longitude.value = position.coords.longitude;
     }
 
-    function displayPosition(long, lat) {
+    function displayPosition(long, lat) { // 
         longitude.value = long;
         latitude.value = lat;
     }
