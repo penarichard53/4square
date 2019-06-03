@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<!--
+    field.html
+    The purpose of this page is to allow the user to see pertinent information regarding the field a user has.
+    If a crop does not exist on the field, a navigation item titled "Add a Crop" will appear in order to 
+    give the user the ability to add the crop. 2 graphs are generated once a user has a crop associated with his or her
+    field, revealing information regarding the rain forecast for the next 7 days and whether the farmer shoudld consider
+    watering his or her crops for a particular day. 
+-->
 <html lang="en">
 <head>
     <title>Your Crop!</title>
@@ -28,7 +36,7 @@
     </nav>
 </head>
 
-<body onload="getName()">
+<body onload="getName()"> <!-- getName() populates the header -->
 
     <br>   
     <div id="no-graphs"></div>
@@ -39,14 +47,10 @@
     <br>  
     <h4> <center>Figure 1: Rainfall/Land</center></h4>
     <br>     
-    <div class="row">
-        <!--<div class="col-sm-4">
-            <a id="add-crop-btn"><button type="button" class="btn btn-outline-secondary">Add a crop to this field</button></a>
-            <div id="get-agronomic"></div>
-        </div>-->
+    <div class="row"> <!-- bootstrap row -->        
         <div class="col-sm-4">
             <div class="chart-container" style="position: relative; left: 270px; height:400px; width:780px">
-                <canvas id="generateChart"></canvas>
+                <canvas id="generateChart"></canvas> <!-- first chart -->
             </div>
         </div>
     </div>
@@ -57,7 +61,7 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="chart-container" style="position: relative; left: 270px; height:440px; width:780px">
-                <canvas id="myChart"></canvas>            
+                <canvas id="myChart"></canvas> <!-- second chart -->         
             </div>
         </div>
     </div>
@@ -65,7 +69,7 @@
 </body>
 
 <script>
-
+    // get query string params
     const urlv2 = new URL(window.location)
     const paramsv2 = new URLSearchParams(urlv2.search)
 
@@ -73,15 +77,18 @@
     const uri2 = '/v2/agronomics/fields/' + paramsv2.get("fieldId") + '/agronomicnorms' 
     var errFound = false;
 
-    document.getElementById('curr-field').innerHTML = paramsv2.get("fieldId") // display field name in navbar
-    // document.getElementById('add-crop-btn').setAttribute("href", "addCrop?fieldId=" + paramsv2.get("fieldId"))
+    // display field name in navbar    
+    document.getElementById('curr-field').innerHTML = paramsv2.get("fieldId") 
 
+    /**
+     * Generate header based on query string
+     */ 
     function getName() {
-
         var name = paramsv2.get("fieldId");
         document.getElementById("cropName").innerHTML = name;
     }
 
+    // ajax request to aWhere API that is used to gather weather forecast pertaining to the field
     $.ajax({
         url: host + uri,
         type: "GET",
@@ -96,18 +103,15 @@
                 console.log("made it");
                 days.push(day)
                 for(var j = 0; j < 24; j++){ // 24 hours a day
-                    const pptchance = response.forecasts[i].forecast[j].precipitation.chance;                             
-                    // console.log(response.forecasts[i].forecast[j].precipitation)
-                    // console.log("chance=" + chance + " chance[" + i + "]=" + chance[i]);
+                    const pptchance = response.forecasts[i].forecast[j].precipitation.chance;                    
                     if( pptchance > chance[i]){                                        
                         chance[i] = pptchance; // if pptchance > 0 find max pptchance of day
                     } 
                 }
                 
-            }
-                
+            }                
             generateChart(chance, days);
-        }, // end of success ajax1
+        }, // end of success ajax1        
         error: function(xhr, ajaxOptions, thrownError) { // no crops, add a addCrop button
             const l = document.createElement('li');
             const a = document.createElement('a');
@@ -122,13 +126,12 @@
         }
     })
 
-    // ajax2 for PPET
+    // ajax request to aWhere API that is used to gather agronomic data pertaining to the crop
     $.ajax({
         url: host + uri2,
         type: "GET",
         beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
-        success: (response) => {    
-
+        success: (response) => {
             var days = [];
             var ppet = [];
             var threshold = [];
@@ -138,12 +141,11 @@
                 days.push(day.day);
                 ppet.push(day.ppet.average);
                 threshold.push(1);
-            }
-            // console.log("going out");
+            }            
             var dataset = new Array(ppet, threshold);
-            // console.log(dataset);
+
             generateGraph(days, dataset);
-        }, // end of success ajax2
+        }, // end of success 
         error: function(xhr) {
             if(!errFound) {
                 const l = document.createElement('li');
@@ -161,41 +163,13 @@
     }) // end of ajax2
     
 
-    /*
-    function parseWeather(response) {    
-        var chance = new Array(0,0,0,0,0,0,0); // chance of precipitation
-        var days = [];
-        
-        for(i = 0; i < 7; i++){ // 7 days a week
-            const day = response.forecasts[i].date
-            console.log('date = ' + day);
-            days.push(day)
-            for(var j = 0; j < 24; j++){ // 24 hours a day
-                const pptchance = response.forecasts[i].forecast[j].precipitation.chance;                             
-                // console.log(response.forecasts[i].forecast[j].precipitation)
-                // console.log("chance=" + chance + " chance[" + i + "]=" + chance[i]);
-                if( pptchance > chance[i]){                                        
-                    chance[i] = pptchance; // if pptchance > 0 find max pptchance of day
-                } 
-            }
-            
-        }
-            
-        generateChart(chance, days);
-        
-    }
-
-    $(function() { 
-        parseWeather(weatherResp);        
-    })    
-    */
-   
+      
     // chart.js
-    function generateChart(data, labels) {        
+    function generateChart(data, labels) { // labels will populate the x axis labels       
         var ctx = document.getElementById("myChart").getContext("2d");
         var chartType = {        
             type: 'line',            
-            data: {
+            data: { // each dataset represents a line in the graph
                 labels: labels,
                 datasets: [{
                     data: data,
@@ -216,13 +190,14 @@
         document.getElementById('rain-text').innerHTML = `<p><center>This is your future rain forecast, calculated by your farm's location. If the chance of rain is <br> greater than 50 %, consider not irrigating your crop if PPET is also increasing.</center></p>`;
     }
 
-    function generateGraph(days, data){
+    // chart.js
+    function generateGraph(days, data){ // days will populate the x axis labels
         var ctx2 = document.getElementById("generateChart").getContext("2d");
         var chartType = {        
             type: 'line',            
             data: {
                 labels: days,
-                datasets: [{
+                datasets: [{ // each dataset represents a line in the graph
                         data: data[0],
                         label: "PPET",
                         fill: false,

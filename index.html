@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!--
+    index.html
+    The purpose of this page is to display all the fields a user has with our app. If no fields are displayed, he or she may choose to "Add a Field"
+    If a field is no longer needed by the user, he or she has the decision to delete the field by selecting the delete button. We have a small paragraph describing the 
+    functionality of our app. 
+-->
 <html lang="en">
 <head>
 	<title>4square</title>
@@ -19,6 +25,7 @@
           background-size: 100%;     
         } 
     </style>
+    <!-- navbar -->
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -46,12 +53,15 @@
 </body>
 
 <script>
+
     const uri = '/v2/fields'
     const urlv2 = new URL(window.location)
+
     // access user by params.user
     const params = new URLSearchParams(urlv2.search)
     
-    $.ajax({
+
+    $.ajax({ // populate the homepage with all the fields a user has, additionally, generate a Delete button for each field
         url: host + uri,
         type: "GET",
         beforeSend: (xhr) => {xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)},
@@ -73,34 +83,11 @@
             }
         }
     })
-    
-    /*
-    function parseFields(o) { 
-        
-        for(var field of o['fields']){
-          var well = document.createElement('div')
-          well.setAttribute("class", "well well-lg")
-          var elem = document.createElement('a')
-          elem.href = 'field?cropID=' + field.name + '&fieldId=' + field.id
-          elem.innerHTML = '<p>' + field.name + '<p>'
-          var buttonElem = document.createElement("button")
-          buttonElem.innerText = "Delete this Field"
-          buttonElem.setAttribute("class", "pull-right")
-          buttonElem.setAttribute("onclick", "deleteField(this)")
-          buttonElem.setAttribute("id", field.id)
-          well.appendChild(elem)
-          well.appendChild(buttonElem)
-          document.getElementById('fields').appendChild(well)         
-        }
-    }
 
-    $(function() {
-        parseFields(allCrops)
-    })
-    */
-
-    function deleteField(elem) {
-      console.log(elem);      
+    /**
+     * Upon clicking the delete button on a particular field, an ajax call with the DELETE request
+     */ 
+    function deleteField(elem) {      
       const uri = '/v2/fields/' + elem.getAttribute("id")
       $.ajax({
         url: host + uri,
