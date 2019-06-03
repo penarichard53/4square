@@ -17,12 +17,12 @@ I wrote the structure of the application, including functionality and API calls.
 	*
 	*
 	
-* Christian Lay-Geng
+#### Christian Lay-Geng
 
 	* Led brainstorming session, emailed farmers for needfinding
 	* Understood agronomics and formatted the charts on field.html
 
-* Brandon Lien
+#### Brandon Lien
 
 	*
 	*
