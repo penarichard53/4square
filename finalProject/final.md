@@ -14,8 +14,8 @@ I wrote the structure of the application, including functionality and API calls.
 
 #### Sadeem Khan
 
-*
-*
+* Was responsible for creating each of the md files for the milestones. Contributed to brainstorming 
+* Made functionality for some parts of the home page including the navbar and team logo
 	
 #### Christian Lay-Geng
 
@@ -26,7 +26,6 @@ I wrote the structure of the application, including functionality and API calls.
 
 * Did most of the styling of the app. Selected and formatted the backgrounds we use as well as kept everything centered. Chose images to use in
 * the early stages of the app and made sure there were no watermarks.
-
 
 
 ### List of Source Code Files
