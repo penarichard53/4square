@@ -58,8 +58,7 @@ app.post('/addCrop', (req,res) => {
         }
     }
     request(options, function(err,response,body){        
-        console.log(body);
-        // console.log(options)        
+        console.log(body);        
     })
 
     res.redirect('/')

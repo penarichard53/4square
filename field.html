@@ -98,9 +98,7 @@
             var days = [];
 
             for(i = 0; i < 7; i++){ // 7 days a week
-                const day = response.forecasts[i].date
-                console.log('date = ' + day);
-                console.log("made it");
+                const day = response.forecasts[i].date                
                 days.push(day)
                 for(var j = 0; j < 24; j++){ // 24 hours a day
                     const pptchance = response.forecasts[i].forecast[j].precipitation.chance;                    
@@ -136,8 +134,7 @@
             var ppet = [];
             var threshold = [];
 
-            for(var day of response["dailyNorms"]){
-                // console.log(day); 
+            for(var day of response["dailyNorms"]){                
                 days.push(day.day);
                 ppet.push(day.ppet.average);
                 threshold.push(1);

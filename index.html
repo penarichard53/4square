@@ -87,7 +87,7 @@
     /**
      * Upon clicking the delete button on a particular field, an ajax call with the DELETE request
      */ 
-    function deleteField(elem) {      
+    function deleteField(elem) {
       const uri = '/v2/fields/' + elem.getAttribute("id")
       $.ajax({
         url: host + uri,
