@@ -1,3 +1,8 @@
+/**
+ * Main driver of the application, server.js provides the backend server that serves requests to various URIs. We elected to omit the file extension for our files
+ * to be more in line with industry practice. The server will serve POST request on various URIs because browsers have some limitations due to Cross-Origin Requests
+ */
+
 const TOKEN = 'qyOWVZihNRe2A9qBCGZuUeE5wGW9'
 const HOST = 'https://api.awhere.com'
 
@@ -12,9 +17,6 @@ app.use(express.static('static_files'));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-app.get('/agronomic', (req,res) => {     
-    res.sendFile(__dirname + '/' + 'agronomic.html')
-})
 
 app.get('/field', (req,res) => {     
     res.sendFile(__dirname + '/' + 'field.html')
@@ -80,6 +82,9 @@ app.get('/addField', (req,res) => {
     res.sendFile(__dirname + '/' + 'addField.html')
 })
 
+/**
+ * unable to post 'Content-Type: application/json' via ajax inside browser, created endpoint on express API to make the request for me
+ */
 app.post('/addField', (req,res) => {
     const uri = '/v2/fields'
     const options = {
@@ -111,6 +116,7 @@ app.post('/', (req,res) => {
     res.sendFile(__dirname + '/' + 'index.html')
 })
 
-app.listen(3000, () => { // set server to listen on port 3000
+// set server to listen on port 3000
+app.listen(3000, () => { 
     console.log('Server started at http://localhost:3000/');
 })

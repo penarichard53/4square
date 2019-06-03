@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<!-- 
+    addCrop.html 
+    The purpose of this page is to allow the user to add a crop to their field. The field is automatically populated and read-only 
+    because thisd page is only visitable from field.html. Upon submitting the form, the Express server will make an API POST request to the 
+    aWhere API so the information can be added to the app.
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -111,12 +119,14 @@
 
 <body text = "green">
     
+    <!-- form will take in user data and server will make a POST request to the aWhere API -->
     <form class="form-style-9" method="POST">
         <b>Fill out the pertinent information below</b>
         <ul>
+            <!-- read-only to prevent user error when adding a crop to the field they wish -->
             <li><input class="field-style field-split" type="text" name="fieldId" id="input-fieldId" readonly></li>
             <li>Crop: 
-                <select class="field-style field-split align-right" name="crop" required>                    
+                <select class="field-style field-split align-right" name="crop" required> <!-- fields are marked required if they are required -->                   
                     <option value="barley-generic">Barley</option>
                     <option value="canola-generic">Canola</option>            
                     <option value="cotton-2200-gdd">Cotton</option>
@@ -147,8 +157,8 @@
                 </div>
             </li>
             <li>                
-                <input class="field-style field-split align-left" type="text" name="actualYieldAmount" placeholder="Yield Amount" required>                
-                <input class="field-style field-split align-right" type="text" name="actualYieldUnits" placeholder="Yield Units" required>
+                <input class="field-style field-split align-left" type="text" name="actualYieldAmount" placeholder="Yield Amount" >                
+                <input class="field-style field-split align-right" type="text" name="actualYieldUnits" placeholder="Yield Units" >
                 <div class="tooltip">(details)
                     <span class="tooltiptext">The actual yield can be any amount and any units (bushels, boxes, etc). This is an optional set of fields, but if one is set the other must be as well.</span>
                 </div>
@@ -165,14 +175,15 @@
         </ul>
     </form>
 </body>
+
 <script>
     const urlv3 = new URL(window.location)
     const paramsv3 = new URLSearchParams(urlv3.search)
 
     document.getElementById('curr-field').innerHTML = paramsv3.get("fieldId")
 
-    $(document).ready( () => {
-        console.log(paramsv3);        
+    // populate the fieldId from the query string
+    $(document).ready( () => {              
         document.getElementById('input-fieldId').value = paramsv3.get("fieldId")
     })
 
